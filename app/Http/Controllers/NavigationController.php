@@ -8,6 +8,9 @@ class NavigationController extends Controller
 {
     // HOME
     public function index(){
+        if(auth()->check()){
+            return redirect()->route('teams');
+        }
         return view('index');
     }
 

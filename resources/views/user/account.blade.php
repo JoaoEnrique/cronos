@@ -42,7 +42,7 @@
                     </p>  --}}
 
                     @if(auth()->check() && $user->id == auth()->user()->id)
-                        <a href="{{route('account.edit')}}" class="btn btn-yellow" style="width: 100%;">
+                        <a target="_blank" href="{{config("app.pacoca_url")}}/conta" class="btn btn-yellow" style="width: 100%;">
                             Editar
                         </a>
                     @else
@@ -53,20 +53,25 @@
                         @endphp
 
 
-                        @if($isAdmin)
+                        <div class="d-flex">
+                            <a target="_blank" href="{{config("app.pacoca_url")}}/{{"@" . $user->user_name}}" class="btn btn-yellow" style="width: {{ $user->readbook_user_id ? "50%" : "100%"}};">
+                                Paçoca
+                            </a>
 
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirm-delete-user" style="width: 100%;">
-                                Excluir
-                            </button>
-                        @endif
+                            @if($user->readbook_user_id )
+                                <a target="_blank" href="{{config("app.readbooks_url")}}/compartilhar-livro/{{$user->id}}" class="btn btn-yellow" style="width: 50%;">
+                                    Read Books
+                                </a>
+                            @endif
+                        </div>
                     @endif
                 </div>
 
                 @php 
-                    $path = str_replace('../', "", auth()->user()->img_account);
+                    $path = str_replace('../', "", $user->img_account);
 
                     if (file_exists($path)) {
-                        $img_account = config("app.pacoca_url") . "/" .  $path;
+                        $img_account = config("app.pacoca_back_url") . "/" .  $path;
                     } else {
                         $img_account = asset('img/img_account/img_account.png');
                     }

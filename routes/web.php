@@ -18,34 +18,12 @@ use App\Http\Controllers\TeamController;
 */
 
 // NAVEGAÇÃO
-Route::get('/', [NavigationController::class, 'index'])->name('index'); //página Home
-
-Route::get('/#about', function () {
-    // Lógica de controle, se necessário
-})->name('about'); //página Sobre
-
-Route::get('/#home', function () {
-    // Lógica de controle, se necessário
-})->name('home'); //página Sobre
-
-Route::get('/#project', function () {
-    // Lógica de controle, se necessário
-})->name('project'); //página Sobre
-
-Route::get('/#contact', function () {
-    // Lógica de controle, se necessário
-})->name('contact'); //página Sobre
-
-Route::get('/#servicos', function () {
-    // Lógica de controle, se necessário
-})->name('services'); //página Sobre
-
 Route::get('/pagina-nao-encontrada', [NavigationController::class, 'page_not_found'])->name('page_not_found'); //página Sobre
-Route::post('/send-contact', [UserController::class, 'SendContact'])->name('user.send_contact');//Enviar mensagem
-
+Route::get('/', [NavigationController::class, 'index'])->name('index'); //página Home
 
 //USUARIO NÃO LOGADO
 Route::group(['middleware' => 'guest'], function () {
+
     // Login
     Route::get('/login', [NavigationController::class, 'login'])->name('login');
     Route::post('/login', [UserController::class, 'login']);
@@ -68,12 +46,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     // 
-    Route::get('/team/{team_code}', [UserController::class, 'team'])->name('team');//turma especifica
-    Route::get('/teams', [UserController::class, 'teams'])->name('teams');//todas as turmas
-    Route::post('/team/send-message', [UserController::class, 'messageTeam'])->name('team.message');//envia mensagem na turma
-    Route::post('/team/update-message', [UserController::class, 'updateMessage'])->name('message.update');//edita mensagem da turma
-    Route::post('/team/enter', [UserController::class, 'enterTeam'])->name('team.enter');//entrar na turma
-    Route::post('/delete-message/{id_message_team}', [UserController::class, 'deleteMessage'])->name('message.delete');//APAGAR MENSAGEM
+    // Route::get('/team/{team_code}', [UserController::class, 'team'])->name('team');//turma especifica
+    // Route::get('/teams', [UserController::class, 'teams'])->name('teams');//todas as turmas
+    // Route::post('/team/send-message', [UserController::class, 'messageTeam'])->name('team.message');//envia mensagem na turma
+    // Route::post('/team/update-message', [UserController::class, 'updateMessage'])->name('message.update');//edita mensagem da turma
+    // Route::post('/team/enter', [UserController::class, 'enterTeam'])->name('team.enter');//entrar na turma
+    // Route::post('/delete-message/{id_message_team}', [UserController::class, 'deleteMessage'])->name('message.delete');//APAGAR MENSAGEM
 
      // TURMA
     Route::group(['prefix' => 'teams'], function () {
@@ -83,23 +61,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/delete/{id_team}', [TeamController::class, 'delete'])->name('team.delete');//APAGAR TURMA
         Route::get('/edit/{id_team}', [TeamController::class, 'edit'])->name('team.edit');//VIEW EDITAR TURMA
         Route::post('/edit/{id_team}', [TeamController::class, 'update']);//VIEW EDITAR TURMA
-        Route::post('/delete-team/{id_team}', [AdminController::class, 'deleteTeam'])->name('team.delete');//APAGAR TURMA
+        Route::post('/enter', [TeamController::class, 'enter'])->name('team.enter');//entrar na turma
+        
+        
+        Route::group(['prefix' => 'messages'], function () {
+            Route::post('/store', [UserController::class, 'messageTeam'])->name('team.message');//envia mensagem na turma
+            Route::post('/delete/{id_message_team}', [UserController::class, 'deleteMessage'])->name('message.delete');//APAGAR MENSAGEM
+            Route::post('/update', [UserController::class, 'updateMessage'])->name('message.update');//edita mensagem da turma
+        });
 
+        Route::get('/{team_code}', [TeamController::class, 'view'])->name('team');//turma especifica
     });
-
-    // 
-    // Route::get('/team/{team_code}', [UserController::class, 'team'])->name('team');//turma especifica
-    // Route::post('/team/send-message', [UserController::class, 'messageTeam'])->name('team.message');//envia mensagem na turma
-    // Route::post('/team/update-message', [UserController::class, 'updateMessage'])->name('message.update');//edita mensagem da turma
-    // Route::post('/team/enter', [UserController::class, 'enterTeam'])->name('team.enter');//entrar na turma
-    // Route::post('/delete-message/{id_message_team}', [UserController::class, 'deleteMessage'])->name('message.delete');//APAGAR MENSAGEM
-
-    //  // TURMA
-    // Route::get('/create-team', [NavigationController::class, 'create_team'])->name('admin.create_team');//VIEW CRIAR TURMA
-    // Route::post('/create-team', [TeamController::class, 'store']);//CRIAR TURMA
-    // Route::post('/delete-team/{id_team}', [AdminController::class, 'deleteTeam'])->name('team.delete');//APAGAR TURMA
-    // Route::get('/edit-team/{id_team}', [AdminController::class, 'edit_team'])->name('team.edit');//VIEW EDITAR TURMA
-    // Route::post('/edit-team', [AdminController::class, 'editTeam']);//EDITAR TURMA
 
     // SÓ ADMIN PODE ACESSAR
     Route::middleware('admin')->group(function () {

@@ -76,7 +76,7 @@
                 </div>
 
                 @foreach($teams as $team)
-                    <a href="/team/{{$team->team_code}}" style="text-decoration: none;color: #fff">
+                    <a href="/teams/{{$team->team_code}}" style="text-decoration: none;color: #fff">
                         <div class="card card-teams" style="background: {{  $team->color  }}">
                             <div class="card-body">
                                 <div class="row">
@@ -111,7 +111,7 @@
                                                         <textarea class="d-none team_code{{$team->id_teams}}">{{$team->team_code}}</textarea>
 
                                                         <ul class="dropdown-menu dropdown-100">
-                                                            @if($isAdmin)
+                                                            @if($isAdmin || auth()->user()->id == $team->id_user)
                                                                 <li>
                                                                     <!-- Botão para abrir o modal -->
                                                                     <a  type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cod-team-{{$team->id_teams}}">
@@ -154,16 +154,9 @@
             </div>
 
             {{-- Se for admin e não tiver turma criada --}}
-            @if($isAdmin && count($teams) <=0)
+            @if(count($teams) <=0)
                 <div class="form-open-team">
-                    <h3>Nenhuma turma criada <a href="{{ route('team.store') }}">Crie uma aqui</a></h3> 
-                </div>
-            @endif
-
-            {{-- Se não for admin e não tiver turma criada --}}
-            @if(!$isAdmin && count($teams) <=0)
-                <div class="form-open-team">
-                    <h3>Você ainda não entrou em uma turma</h3> 
+                    <h3>Nenhuma turma criada <a href="{{ route('team.store') }}">Crie uma</a></h3> 
                 </div>
             @endif
 

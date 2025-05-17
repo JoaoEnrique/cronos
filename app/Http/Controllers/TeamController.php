@@ -31,7 +31,7 @@ class TeamController extends Controller
             'teams.*',
             'users_teams.*',
             'users.id as user_id',
-            'users.name',
+            'users.name as name_name',
             'users.username',
             'users.id'
         )
@@ -105,7 +105,7 @@ class TeamController extends Controller
             'color' => $request->color,
         ]);
 
-        return redirect("/team/$team->team_code")->with('success', 'Turma atualizada');
+        return redirect("/teams/$team->team_code")->with('success', 'Turma atualizada');
     }
 
     public function delete($id_team){
@@ -140,4 +140,53 @@ class TeamController extends Controller
         return redirect()->route('teams')->with('success', 'Turma excluida');
     }
 
+    public function enter(Request $request){
+        try{
+            $request->validate([
+                'team_code' => ['required']
+            ]);
+
+            $team = Team::where('team_code', $request->team_code)->get()->first();
+
+
+            // Código da turma invalido
+            if(!$team){
+                return back()->withErrors(['team_code' => 'O código da turma não é valido'])->withInput();
+            }
+
+            $user_team = UserTeam::where('id_user', auth()->user()->id)->where('id_team', $team->id_teams)->get()->first();
+
+            if($user_team){
+                return redirect()->intended(route('teams'))->with('warning', 'Você já está nessa turma');
+            }
+
+            $user_team = UserTeam::create([
+                'id_user' => auth()->user()->id,
+                'id_team' => $team->id_teams,
+            ]);
+
+            return redirect()->intended(route('teams'))->with('success', 'Você entrou na turma');
+        }catch(\Exception $e){
+            return redirect()->intended(route('teams'))->with('danger', 'Não foi possível entrar na turma! Talvez ela tenha sido excluida');
+        }
+    }
+
+    public function view($team_code){
+        $team = Team::where('team_code', $team_code)->get()->first();
+
+        // 404
+        if(!$team){
+            return view('errors.404_team');
+        }
+
+        $messages = MessageTeam::
+            join('users', 'messages_team.id_user', '=', 'users.id')
+            ->select('users.id', 'users.name', 'users.username', 'users.img_account', 'messages_team.*')
+            ->where('messages_team.id_team', $team->id_teams)
+            ->orderBy('messages_team.created_at', 'desc') // Adicione esta linha para ordenar por created_at em ordem decrescente
+            ->get();
+            
+
+        return view('user.team', ['team' => $team, 'messages' => $messages]);
+    }
 }

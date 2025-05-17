@@ -19,7 +19,7 @@
                         $path = str_replace('../', "", auth()->user()->img_account);
 
                         if (file_exists($path)) {
-                            $img_account = config("app.pacoca_url") . "/" .  $path;
+                            $img_account = config("app.pacoca_back_url") . "/" .  $path;
                         } else {
                             $img_account = asset('img/img_account/img_account.png');
                         }
@@ -80,7 +80,7 @@
                 <ul class="navbar-nav">
                     <button type="button" class="link-close-menu" data-bs-dismiss="offcanvas" aria-label="Close">{{-- Fechar menu ao ir para link --}}
                         <li class="nav-item">
-                            <a id="link-home" class="nav-link" href="{{route('home')}}">
+                            <a id="link-home" class="nav-link" href="{{route('index')}}">
                                 Home
                             </a>
                         </li>
@@ -106,11 +106,11 @@
                         @endif
                     @endif --}}
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link @if(Route::getCurrentRoute()?->getName() == 'teams') active @endif" href="{{route('teams')}}">
                             Turmas
                         </a>
-                    </li>
+                    </li> --}}
 
                     {{-- Form para entrar na  turma se não for admin --}}
                     @if(auth()->check() && !$isAdmin)
