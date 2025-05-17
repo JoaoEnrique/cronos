@@ -17,21 +17,15 @@
 
     <section id="about">
         <div class="container container-about">
-            {{-- <div class="row" style="flex-wrap: nowrap;">
-                <div class="col-sm-12 col-md-12 col-lg-12 col-text-about show-item" style="margin-top: 100px; width: 100%;">
-                    <h1>SOBRE O CRONOS</h1>
+            <div class="row" style="flex-wrap: nowrap;">
+                <div class="col-sm-12 col-md-12 col-lg-12 form-login" style="margin-top: 100px; width: 100%; padding: 50px;">
+                    <h1>CRONOS</h1>
                     <div class="line"></div>
                     <p>
-                        O <strong>Cronos</strong> é um sistema inteligente para <strong>gerenciamento de atividades e tarefas</strong>, projetado para facilitar o seu dia a dia com organização, praticidade e controle total do tempo.
-                    </p>
-                    <p>
-                        Com uma interface simples e objetiva, o Cronos ajuda você a planejar compromissos, acompanhar prazos e aumentar sua produtividade, seja para uso pessoal, acadêmico ou profissional.
-                    </p>
-                    <p>
-                        Organize sua rotina. Economize tempo. Foque no que realmente importa.
+                       Crie grupos particulares e convide seus amigos por meio de um código .
                     </p>
                 </div>
-            </div> --}}
+            </div>
 
             <form class="col-sm-12 col-md-12 col-lg-12 show-item row g-3 form-login" method="POST" action="{{ route('team.store') }}" style="margin-top: 100px; margin-bottom: 40px; width: 100%; padding: 50px;">
                 @csrf
@@ -39,7 +33,7 @@
                 {{-- NOME --}}
                 <div class="mb-3">
                     <label for="name" class="form-label">Nome</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{old('name')}}" autocomplete="name" autofocus>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{old('name')}}" autocomplete="name">
                     
                     @error('name')
                         <span class="invalid-feedback" role="alert" style="text-align: left">

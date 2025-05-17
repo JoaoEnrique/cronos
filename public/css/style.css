@@ -54,7 +54,7 @@ footer{
 }
 
 #about, #project{
-    background-color: #1b2735;
+    background-color: #F4F2EE;
     min-height: 100vh;
     display: grid;
     place-items: center;
