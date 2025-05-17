@@ -23,18 +23,34 @@ class TeamController extends Controller
     }
 
     public function index(){
-       $teams = DB::table('teams')
+       // 1. Buscar os registros de teams e users_teams (no banco padrão)
+        $teams = DB::table('teams')
             ->join('users_teams', 'teams.id_teams', '=', 'users_teams.id_team')
-            ->join('pacoca.users', 'pacoca.users.id', '=', 'users_teams.id_user')
             ->where('users_teams.id_user', auth()->id())
             ->select(
                 'users_teams.*',
-                'pacoca.users.id as id', // <-- aqui você renomeou
-                'pacoca.users.name as name_name',
-                'pacoca.users.user_name',
-                'teams.*',
+                'teams.*'
             )
             ->get();
+
+        // 2. Obter os IDs dos usuários encontrados
+        $userIds = $teams->pluck('id_user')->unique()->toArray();
+
+        // 3. Buscar os usuários no banco "pacoca"
+        $users = DB::connection('pacoca')->table('users')
+            ->whereIn('id', $userIds)
+            ->get()
+            ->keyBy('id'); // indexa por ID para facilitar uso
+
+        // 4. Juntar os dados manualmente
+        $teams = $teams->map(function ($team) use ($users) {
+            $user = $users[$team->id_user] ?? null;
+
+            return (object) array_merge((array) $team, [
+                'user_name' => $user->user_name ?? null,
+                'name_name' => $user->name ?? null,
+            ]);
+        });
 
 
 
