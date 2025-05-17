@@ -47,6 +47,13 @@ footer{
     opacity: 0.7;
 }
 
+.link{
+    border: 0;
+    background-color: transparent;
+    color: #5bb4ff;
+    text-decoration: underline  solid #5bb4ff;
+    font-weight: 800;
+}
 
 .navbar-nav .nav-item{
     display: flex;

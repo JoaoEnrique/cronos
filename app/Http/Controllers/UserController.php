@@ -55,6 +55,7 @@ class UserController extends Controller
                 'email' => ['required', 'string', 'email', 'max:50', Rule::unique('pacoca.users', 'email')],
                 'password' => ['required', 'string', 'min:8', 'max:50', 'confirmed'],
                 'password_confirmation' => ['required', 'string', 'max:50', 'min:8'],
+                'termos' => ['required'],
             ]);
     
 
