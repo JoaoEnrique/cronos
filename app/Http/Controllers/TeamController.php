@@ -64,4 +64,36 @@ class TeamController extends Controller
 
         return redirect()->route('teams')->with('success', 'Turma criada');
     }
+
+    function edit($id_team){
+        $team = Team::where('id_teams', $id_team)->get()->first();
+
+        if($team){
+            return view('admin.edit_teams', ['team' => $team]);
+        }
+
+        return view('errors.404');
+    }
+
+    public function update(Request $request){
+        // validar dados
+        $dados = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
+        ]);
+
+        $team = Team::where('id_teams', $request->id_team)->get()->first();
+
+        $team->update([
+            'id_user' => auth()->user()->id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'closed' => $request->closed,
+            'color' => $request->color,
+        ]);
+
+        return redirect("/team/$team->team_code")->with('success', 'Turma atualizada');
+
+    }
+
 }

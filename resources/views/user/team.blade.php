@@ -64,14 +64,14 @@
                                         <textarea class="d-none team_code{{$team->id_teams}}">{{$team->team_code}}</textarea>
 
                                         <ul class="dropdown-menu dropdown-100">
-                                            @if($isAdmin)
+                                            @if($isAdmin || auth()->user()->id == $team->id_user)
                                                 <li>
                                                     <!-- Botão para abrir o modal -->
                                                     <a  type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cod-team-{{$team->id_teams}}">
                                                         Copiar código
                                                     </a>
                                                 </li>
-                                                <li><a class="dropdown-item" href="{{ url('/edit-team/' . $team->id_teams) }}">Editar</a></li>
+                                                <li><a class="dropdown-item" href="{{ url('/teams/edit/' . $team->id_teams) }}">Editar</a></li>
                                                 {{-- PAGAR tURMA--}}
                                                 <li>
                                                     <!-- Botão para abrir o modal -->

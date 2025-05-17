@@ -118,7 +118,7 @@
                                                                         Copiar código
                                                                     </a>
                                                                 </li>
-                                                                <li><a class="dropdown-item" href="{{ url('/edit-team/' . $team->id_teams) }}">Editar</a></li>
+                                                                <li><a class="dropdown-item" href="{{ url('/teams/edit/' . $team->id_teams) }}">Editar</a></li>
                                                                 {{-- PAGAR tURMA--}}
                                                                 <li>
                                                                     <!-- Botão para abrir o modal -->

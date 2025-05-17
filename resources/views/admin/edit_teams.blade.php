@@ -9,7 +9,7 @@
 --}}
 
 @extends('layouts.main')
-@section('title', 'Smart Job - Editar Turma')
+@section('title', 'Cronos - Editar Turma')
 
 {{-- Conteudo do site --}}
 @section('content')
@@ -21,10 +21,9 @@
                     <img src="{{asset('img/create_admin.png')}}" class="img-login" srcset="">
                 </div>
                 <div class="col">
-                    <form class="row g-3 form-login" method="POST" action="{{ route('team.edit') }}">
+                    <form class="row g-3 form-login" method="POST" action="/teams/edit/{{ $team->id_teams }}">
                         @csrf
-                        <h1>Editar Turma</h1>
-                        <h1>{{  $team->name  }}</h1>
+                        <h1>Editar - {{  $team->name  }}</h1>
                         {{-- ID da TURMA --}}
                         <input type="text" class="d-none" id="id_team" name="id_team" value="{{  $team->id_teams  }}" autocomplete="off">
 

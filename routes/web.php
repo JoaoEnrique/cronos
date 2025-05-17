@@ -81,6 +81,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/store', [TeamController::class, 'new'])->name('team.store');//VIEW CRIAR TURMA
         Route::post('/store', [TeamController::class, 'store']);//VIEW CRIAR TURMA
         Route::post('/delete/{id_team}', [TeamController::class, 'delete'])->name('team.delete');//APAGAR TURMA
+        Route::get('/edit/{id_team}', [TeamController::class, 'edit'])->name('team.edit');//VIEW EDITAR TURMA
+        Route::post('/edit/{id_team}', [TeamController::class, 'update']);//VIEW EDITAR TURMA
     });
 
     // 
