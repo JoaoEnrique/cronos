@@ -62,8 +62,8 @@ class AdminController extends Controller
 
     public function view_users_teams($id_team){
         $teams = Team::join('users_teams', 'teams.id_teams', '=', 'users_teams.id_team')
-            ->join('users', 'users_teams.id_user', '=', 'users.id')
-            ->select('users.*', 'users_teams.*')
+            ->join('pacoca.users', 'users_teams.id_user', '=', 'pacoca.users.id')
+            ->select('pacoca.users.*', 'users_teams.*')
             ->where('id_team', $id_team)
             ->get();
 
