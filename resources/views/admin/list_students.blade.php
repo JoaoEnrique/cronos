@@ -76,15 +76,15 @@
 
                                     {{-- NOME --}}
                                     <td>
-                                        <a href="/{{$student->username}}" style="color: #000;">
+                                        <a href="/{{$student->user_name}}" style="color: #000;">
                                             {{$student->name}}
                                         </a>    
                                     </td>
 
                                     {{-- NOME DE USUARIO --}}
                                     <td>
-                                        <a href="/{{$student->username}}" style="color: #000; text-decoration: none">
-                                            {{$student->username}}
+                                        <a href="/{{$student->user_name}}" style="color: #000; text-decoration: none">
+                                            {{$student->user_name}}
                                         </a>      
                                     </td>
 
@@ -199,8 +199,8 @@
                                 $('#search-results').append(
                                     '<tr>' +
                                     `<td> <div class="img-account-menu" style="background-image: url('${student.img_account}')"></div></td>` +
-                                    '<td><a href="/{{$student->username}}" style="color: #000;">' + student.name + '</td>' +
-                                    '<td><a href="/{{$student->username}}" style="color: #000; text-decoration: none">' + student.username + '</a></td>' +
+                                    '<td><a href="/{{$student->user_name}}" style="color: #000;">' + student.name + '</td>' +
+                                    '<td><a href="/{{$student->user_name}}" style="color: #000; text-decoration: none">' + student.username + '</a></td>' +
                                     '<td>' + student.email + '</td>'+
                                     `
                                     <td>

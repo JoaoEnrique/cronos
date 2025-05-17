@@ -47,11 +47,11 @@ Route::post('/send-contact', [UserController::class, 'SendContact'])->name('user
 Route::group(['middleware' => 'guest'], function () {
     // Login
     Route::get('/login', [NavigationController::class, 'login'])->name('login');
-    Route::post('/login', [UserController::class, 'login'])->name('login');
+    Route::post('/login', [UserController::class, 'login']);
 
     // Criar conta
     Route::get('/register', [NavigationController::class, 'register'])->name('register');
-    Route::post('/register', [UserController::class, 'createAccount'])->name('register');
+    Route::post('/register', [UserController::class, 'createAccount']);
 });
 
 
@@ -80,17 +80,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/list-admins', [AdminController::class, 'listAdmins'])->name('admin.list_admins');//LISTAR ADMINS
         Route::get('/list-students', [AdminController::class, 'listStudents'])->name('admin.list_students');//LISTAR ALUNOS
         Route::get('/create-admin', [NavigationController::class, 'create_admin'])->name('admin.create');//VIEW CRIAR ADMIN
-        Route::post('/create-admin', [AdminController::class, 'createAdmin'])->name('admin.create');//CRIAR ADMIN
+        Route::post('/create-admin', [AdminController::class, 'createAdmin']);//CRIAR ADMIN
        
         Route::get('/search-admin', [AdminController::class, 'searchAdmin'])->name('admin.search_admin'); //Pesquisa admin
         Route::get('/search-student', [AdminController::class, 'searchStudent'])->name('admin.search_student'); //Pesquisa admin
 
         // TURMA
         Route::get('/create-team', [NavigationController::class, 'create_team'])->name('admin.create_team');//VIEW CRIAR TURMA
-        Route::post('/create-team', [AdminController::class, 'createTeam'])->name('admin.create_team');//CRIAR TURMA
+        Route::post('/create-team', [AdminController::class, 'createTeam']);//CRIAR TURMA
         Route::post('/delete-team/{id_team}', [AdminController::class, 'deleteTeam'])->name('team.delete');//APAGAR TURMA
         Route::get('/edit-team/{id_team}', [AdminController::class, 'edit_team'])->name('team.edit');//VIEW EDITAR TURMA
-        Route::post('/edit-team', [AdminController::class, 'editTeam'])->name('team.edit');//EDITAR TURMA
+        Route::post('/edit-team', [AdminController::class, 'editTeam']);//EDITAR TURMA
 
         
         Route::post('/switch-to-administrator/{id}', [AdminController::class, 'switch_to_administrator'])->name('admin.switch_to_administrator');//MUDAR CADASTRO PARA ADMIN
@@ -106,4 +106,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-Route::get('/{username}', [UserController::class, 'viewAccount'])->name('account');//visualizar da conta
+Route::get('/@{username}', [UserController::class, 'viewAccount'])->name('account');//visualizar da conta

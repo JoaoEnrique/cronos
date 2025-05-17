@@ -74,14 +74,14 @@
                                     
                                     {{-- NOME --}}
                                     <td>
-                                        <a href="/{{$admin->username}}" style="color: #000;">
+                                        <a href="/{{$admin->user_name}}" style="color: #000;">
                                             {{$admin->name}}
                                         </a>
                                     </td> 
 
                                     {{-- NOME DE USUARIO--}}
                                     <td>
-                                        <a href="/{{$admin->username}}" style="color: #000; text-decoration: none">
+                                        <a href="/{{$admin->user_name}}" style="color: #000; text-decoration: none">
                                             {{$admin->name}}
                                         </a>
                                     </td>
@@ -208,8 +208,8 @@
                                         $('#search-results').append(
                                             '<tr>' +
                                                 `<td> <div class="img-account-menu" style="background-image: url('${admin.img_account}')"></div></td>` +
-                                                '<td><a href="/{{$admin->username}}" style="color: #000;">' + admin.name + '</a></td>' +
-                                                '<td><a href="/{{$admin->username}}" style="color: #000; text-decoration:none">' + admin.username + '</a></td>' +
+                                                '<td><a href="/{{$admin->user_name}}" style="color: #000;">' + admin.name + '</a></td>' +
+                                                '<td><a href="/{{$admin->user_name}}" style="color: #000; text-decoration:none">' + admin.username + '</a></td>' +
                                                 '<td>' + admin.email + '</td>'+
                                                 `
                                                 <td>

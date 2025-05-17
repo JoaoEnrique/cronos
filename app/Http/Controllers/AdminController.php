@@ -39,7 +39,7 @@ class AdminController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'username' => $request->username,
+            'username' => $request->user_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'img_account' => 'img/img_account/img_account.png',

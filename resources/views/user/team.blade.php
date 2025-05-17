@@ -532,8 +532,8 @@
                             <div class="col">
                                 <div class="row">
                                     <div class="col">
-                                        <p style="margin: 0; font-size: 18px"><a href="/{{$user->username}}" style="color: #000; text-decoration: none">{{$user->name}}</a></p>
-                                        <p style="font-size: 15px"><a href="/{{$user->username}}" style="color: #000; text-decoration: none">{{"@" . $user->username}}</a></p>
+                                        <p style="margin: 0; font-size: 18px"><a href="/{{$user->user_name}}" style="color: #000; text-decoration: none">{{$user->name}}</a></p>
+                                        <p style="font-size: 15px"><a href="/{{$user->user_name}}" style="color: #000; text-decoration: none">{{"@" . $user->user_name}}</a></p>
                                     </div>
                                 </div>
                                 <div class="col" style="margin-bottom: 10px;">

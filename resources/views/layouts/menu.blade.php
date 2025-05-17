@@ -19,7 +19,7 @@
                         $path = str_replace('../', "", auth()->user()->img_account);
 
                         if (file_exists($path)) {
-                            $img_account = asset(auth()->user()->img_account);
+                            $img_account = config("app.pacoca_url") . "/" .  $path;
                         } else {
                             $img_account = asset('img/img_account/img_account.png');
                         }
@@ -43,17 +43,17 @@
                             <div class="row" style="width: 100%;">
                                 <div class="" style="width: 65px">
                                     {{-- <img src="{{asset(auth()->user()->img_account)}}" height="50px" srcset=""> --}}
-                                    <div class="img-account-menu" style="background-image: url('{{asset($img_account)}}')"></div>
+                                    <div class="img-account-menu" style="background-image: url('{{$img_account}}')"></div>
                                 </div>
                                 <div class="col">
                                     <p style="margin: 0; font-size: 20px">{{auth()->user()->name}}</p>
-                                    <p style="font-size: 15px">{{"@" . auth()->user()->username}}</p>
+                                    <p style="font-size: 15px">{{"@" . auth()->user()->user_name}}</p>
                                 </div>
                             </div>
 
                             </a>
                             <ul class="dropdown-menu dropdown-100" style="min-width: 100%; position: absolute;">
-                                <li><a class="dropdown-item" href="/{{auth()->user()->username}}">Conta</a></li>
+                                <li><a class="dropdown-item" href="/{{"@" . auth()->user()->user_name}}">Conta</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 {{-- Sai da conta --}}
                                 <li>
@@ -154,16 +154,6 @@
                         <li class="none-cel nav-item dropdown" style="flex-wrap: wrap;">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%; display: flex; align-items: center;">
                                 {{-- Verifica se tem imagem --}}
-                                @php 
-                                    $path = str_replace('../', "", auth()->user()->img_account);
-
-                                    if (file_exists($path)) {
-                                        $img_account = asset(auth()->user()->img_account);
-                                    } else {
-                                        $img_account = asset('img/img_account/img_account.png');
-                                    }
-                                @endphp
-
 
                                 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
                                 <script>
@@ -182,7 +172,7 @@
                                 <div class="img-account-menu"></div>
                             </a>
                             <ul class="dropdown-menu dropdown-100" style="">
-                                <li><a class="dropdown-item" href="/{{auth()->user()->username}}">Conta</a></li>
+                                <li><a class="dropdown-item" href="/{{"@" . auth()->user()->user_name}}">Conta</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 {{-- Sai da conta --}}
                                 <li>

@@ -53,7 +53,7 @@ class UserController extends Controller
 
             $user = User::create([
                 'name' => $request->name,
-                'username' => $request->username,
+                'username' => $request->user_name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'img_account' => 'img/img_account/img_account.png',
@@ -77,7 +77,7 @@ class UserController extends Controller
 
     // ABRIR CONTA
     public function viewAccount($user_name){
-        $user = User::where('username', $user_name)->get()->first();
+        $user = User::where('user_name', $user_name)->get()->first();
 
         if($user){
             return view('user.account', compact('user'));
@@ -97,23 +97,23 @@ class UserController extends Controller
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
 
-            $user = User::where('username', $request->username)->get()->first();
+            $user = User::where('username', $request->user_name)->get()->first();
 
             $user->update([
                 'name' => $request->name,
-                'username' => $request->username,
+                'username' => $request->user_name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
 
             // Se estiver hospedado
             if($this->isHospedagem){
-                return redirect('/' . $user->username)->with('success', 'Conta atualizada com sucesso!');
+                return redirect('/' . $user->user_name)->with('success', 'Conta atualizada com sucesso!');
             }else{// Se não estiver hospedado
-                return redirect('/' . $user->username)->with('success', 'Conta atualizada com sucesso!');
+                return redirect('/' . $user->user_name)->with('success', 'Conta atualizada com sucesso!');
             }
         }catch(Exception $e){
-            return redirect('/' . $user->username)->with('danger', 'Não foi possivel atualizar conta! Tente novamente mais tarde');
+            return redirect('/' . $user->user_name)->with('danger', 'Não foi possivel atualizar conta! Tente novamente mais tarde');
         }
     }
 
@@ -250,9 +250,9 @@ class UserController extends Controller
                     'img' => "img/img_account/" . $imgName,
                 ]);
 
-                return redirect('/' . $user->username)->with('success', 'Imagem alterada com sucesso!');
+                return redirect('/' . $user->user_name)->with('success', 'Imagem alterada com sucesso!');
             }else{
-                return redirect('/' . $user->username)->with('danger', 'Erro ao alterar imagem! Tente novamente mais tarde');
+                return redirect('/' . $user->user_name)->with('danger', 'Erro ao alterar imagem! Tente novamente mais tarde');
             }
         }
             // return redirect()->route('account.edit')->with('danger-img', 'Clique na sua imagem abaixo para trocar a foto de perfil');

@@ -34,7 +34,7 @@
             <div class="row" style="justify-content: center;">
                 <div class="col-md-8 col-sm-8 col-name-usser">
                     <h2>{{$user->name}}</h2>
-                    <p>{{"@$user->username"}}</p>
+                    <p>{{"@$user->user_name"}}</p>
                     {{-- <p class="seguidores">3 
                         publicações &nbsp;&nbsp; - &nbsp;&nbsp;  
                         <span id="numero-seguidor">1</span> seguidores &nbsp;&nbsp; - &nbsp;&nbsp; 
@@ -62,8 +62,19 @@
                     @endif
                 </div>
 
+                @php 
+                    $path = str_replace('../', "", auth()->user()->img_account);
+
+                    if (file_exists($path)) {
+                        $img_account = config("app.pacoca_url") . "/" .  $path;
+                    } else {
+                        $img_account = asset('img/img_account/img_account.png');
+                    }
+                @endphp
+
+
                 <div class="col-md-2 col-sm-2 col-img-cosnta">
-                    <div class="img-conta-perfil" style="background-image: url('{{$user->img_account}}')"></div>
+                    <div class="img-conta-perfil" style="background-image: url('{{$img_account}}')"></div>
                 </div>
             </div>
     

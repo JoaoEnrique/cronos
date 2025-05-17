@@ -55,6 +55,8 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    
+    'pacoca_url' => env('PACOCA_URL', 'https://pacoca.net'),
 
     'asset_url' => env('ASSET_URL'),
 

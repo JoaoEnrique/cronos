@@ -82,7 +82,7 @@
                         {{-- NOME DE USUÁRIO --}}
                         <div class="col-6 mb-3">
                             <label for="username" class="form-label">Nome de usuário</label>
-                            <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ auth()->user()->username }}" autocomplete="username">
+                            <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ auth()->user()->user_name }}" autocomplete="username">
                             
                             @error('username')
                                 <span class="invalid-feedback" role="alert" style="text-align: left">
