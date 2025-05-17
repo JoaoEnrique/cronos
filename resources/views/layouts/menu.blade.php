@@ -87,7 +87,7 @@
                     </button>
                     <hr>
                     {{-- Se for admin,  mostra criar quiz e tabelas de listagem--}}
-                    @if(auth()->check() && $isAdmin)
+                    {{-- @if(auth()->check() && $isAdmin)
                         @if ($isAdmin)
                             <li class="nav-item dropdown" style="flex-wrap: wrap;">
                                 <a
@@ -104,7 +104,7 @@
                                 </ul>
                             </li>
                         @endif
-                    @endif
+                    @endif --}}
 
                     <li class="nav-item">
                         <a class="nav-link @if(Route::getCurrentRoute()?->getName() == 'teams') active @endif" href="{{route('teams')}}">

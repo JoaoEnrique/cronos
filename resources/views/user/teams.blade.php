@@ -55,27 +55,25 @@
 
 
                 {{-- Form para entrar na  turma se não for admin --}}
-                @if(!$isAdmin)
-                    <div class="form-open-team">
-                        <form action="{{route('team.enter')}}" method="post">
-                            @csrf
-                            <div class="row">
-                                <div class="col-7">
-                                    <input class="form-control @error('team_code') is-invalid @enderror" type="text" placeholder="Código da turma" name="team_code" id="team_code" value="{{old('team_code')}}">                       
-                                    
-                                    @error('team_code')
-                                        <span class="invalid-feedback" role="alert" style="text-align: left; display: block!important;">
-                                            {{$message}}
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="col">
-                                    <button class="btn btn-open-team" type="submit">Entrar na turma</button>
-                                </div>
+                <div class="form-open-team">
+                    <form action="{{route('team.enter')}}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="col-7">
+                                <input class="form-control @error('team_code') is-invalid @enderror" type="text" placeholder="Código da turma" name="team_code" id="team_code" value="{{old('team_code')}}">                       
+                                
+                                @error('team_code')
+                                    <span class="invalid-feedback" role="alert" style="text-align: left; display: block!important;">
+                                        {{$message}}
+                                    </span>
+                                @enderror
                             </div>
-                        </form>
-                    </div>
-                @endif
+                            <div class="col">
+                                <button class="btn btn-open-team" type="submit">Entrar na turma</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
                 @foreach($teams as $team)
                     <a href="/team/{{$team->team_code}}" style="text-decoration: none;color: #fff">
@@ -148,19 +146,17 @@
                 @endforeach
 
                 {{-- CRIAR TURMA --}}
-                @if($isAdmin)
-                    <a class="btn-adicionar-livro" href="{{ route('admin.create_team') }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
-                        </svg>
-                    </a>
-                @endif
+                <a class="btn-adicionar-livro" href="{{ route('team.store') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
+                    </svg>
+                </a>
             </div>
 
             {{-- Se for admin e não tiver turma criada --}}
             @if($isAdmin && count($teams) <=0)
                 <div class="form-open-team">
-                    <h3>Nenhuma turma criada <a href="{{ route('admin.create_team') }}">Crie uma aqui</a></h3> 
+                    <h3>Nenhuma turma criada <a href="{{ route('team.store') }}">Crie uma aqui</a></h3> 
                 </div>
             @endif
 
@@ -253,14 +249,14 @@
                                     <div class="col">
                                         <div class="row">
                                             <div class="col">
-                                                <p style="margin: 0; font-size: 18px"><a href="/{{$user->user_name}}" style="color: #000; text-decoration: none">{{$user->name}}</a></p>
-                                                <p style="font-size: 15px"><a href="/{{$user->user_name}}" style="color: #000; text-decoration: none">{{"@" . $user->user_name}}</a></p>
+                                                <p style="margin: 0; font-size: 18px"><a href="/{{"@" . $user->username}}" style="color: #000; text-decoration: none">{{$user->name}}</a></p>
+                                                <p style="font-size: 15px"><a href="/{{"@" . $user->username}}" style="color: #000; text-decoration: none">{{"@" . $user->username}}</a></p>
                                             </div>
                                         </div>
                                         <div class="col" style="margin-bottom: 10px;">
                                             <!-- Botão para abrir o modal -->
                                             <a style="width: 100%"  type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#remove-user-{{$user->id}}-{{$team->id_teams}}">
-                                                Remover da turma
+                                                Remover
                                             </a>
                                         </div>
                                     </div>

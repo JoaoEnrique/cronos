@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NavigationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +75,28 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/team/enter', [UserController::class, 'enterTeam'])->name('team.enter');//entrar na turma
     Route::post('/delete-message/{id_message_team}', [UserController::class, 'deleteMessage'])->name('message.delete');//APAGAR MENSAGEM
 
+     // TURMA
+    Route::group(['prefix' => 'teams'], function () {
+        Route::get('/', [TeamController::class, 'index'])->name('teams');//todas as turmas
+        Route::get('/store', [TeamController::class, 'new'])->name('team.store');//VIEW CRIAR TURMA
+        Route::post('/store', [TeamController::class, 'store']);//VIEW CRIAR TURMA
+        Route::post('/delete/{id_team}', [TeamController::class, 'delete'])->name('team.delete');//APAGAR TURMA
+    });
+
+    // 
+    // Route::get('/team/{team_code}', [UserController::class, 'team'])->name('team');//turma especifica
+    // Route::post('/team/send-message', [UserController::class, 'messageTeam'])->name('team.message');//envia mensagem na turma
+    // Route::post('/team/update-message', [UserController::class, 'updateMessage'])->name('message.update');//edita mensagem da turma
+    // Route::post('/team/enter', [UserController::class, 'enterTeam'])->name('team.enter');//entrar na turma
+    // Route::post('/delete-message/{id_message_team}', [UserController::class, 'deleteMessage'])->name('message.delete');//APAGAR MENSAGEM
+
+    //  // TURMA
+    // Route::get('/create-team', [NavigationController::class, 'create_team'])->name('admin.create_team');//VIEW CRIAR TURMA
+    // Route::post('/create-team', [TeamController::class, 'store']);//CRIAR TURMA
+    // Route::post('/delete-team/{id_team}', [AdminController::class, 'deleteTeam'])->name('team.delete');//APAGAR TURMA
+    // Route::get('/edit-team/{id_team}', [AdminController::class, 'edit_team'])->name('team.edit');//VIEW EDITAR TURMA
+    // Route::post('/edit-team', [AdminController::class, 'editTeam']);//EDITAR TURMA
+
     // SÓ ADMIN PODE ACESSAR
     Route::middleware('admin')->group(function () {
         //listagem de usuário
@@ -84,13 +107,6 @@ Route::group(['middleware' => 'auth'], function () {
        
         Route::get('/search-admin', [AdminController::class, 'searchAdmin'])->name('admin.search_admin'); //Pesquisa admin
         Route::get('/search-student', [AdminController::class, 'searchStudent'])->name('admin.search_student'); //Pesquisa admin
-
-        // TURMA
-        Route::get('/create-team', [NavigationController::class, 'create_team'])->name('admin.create_team');//VIEW CRIAR TURMA
-        Route::post('/create-team', [AdminController::class, 'createTeam']);//CRIAR TURMA
-        Route::post('/delete-team/{id_team}', [AdminController::class, 'deleteTeam'])->name('team.delete');//APAGAR TURMA
-        Route::get('/edit-team/{id_team}', [AdminController::class, 'edit_team'])->name('team.edit');//VIEW EDITAR TURMA
-        Route::post('/edit-team', [AdminController::class, 'editTeam']);//EDITAR TURMA
 
         
         Route::post('/switch-to-administrator/{id}', [AdminController::class, 'switch_to_administrator'])->name('admin.switch_to_administrator');//MUDAR CADASTRO PARA ADMIN

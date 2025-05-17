@@ -9,7 +9,7 @@
 --}}
 
 @extends('layouts.main')
-@section('title', 'Smart Job')
+@section('title', 'Cronos')
 
 {{-- Conteudo do site --}}
 @section('content')
@@ -533,13 +533,13 @@
                                 <div class="row">
                                     <div class="col">
                                         <p style="margin: 0; font-size: 18px"><a href="/{{$user->user_name}}" style="color: #000; text-decoration: none">{{$user->name}}</a></p>
-                                        <p style="font-size: 15px"><a href="/{{$user->user_name}}" style="color: #000; text-decoration: none">{{"@" . $user->user_name}}</a></p>
+                                        <p style="font-size: 15px"><a href="/{{$user->user_name}}" style="color: #000; text-decoration: none">{{"@" . $user->username}}</a></p>
                                     </div>
                                 </div>
                                 <div class="col" style="margin-bottom: 10px;">
                                     <!-- Botão para abrir o modal -->
                                     <a style="width: 100%"  type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#remove-user-{{$user->id}}-{{$team->id_teams}}">
-                                        Remover da turma
+                                        Remover
                                     </a>
                                 </div>
                             </div>

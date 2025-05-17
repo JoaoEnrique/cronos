@@ -212,8 +212,7 @@ footer{
 
 
 .nav-link.active{
-    color: var(--primary-blue)!important;
-    border-bottom: 3px solid var(--primary-blue)!important;
+    border-bottom: 3px solid #fff!important;
 }
 
 .dropdown-item.active, .dropdown-item:active{

@@ -260,14 +260,18 @@ class UserController extends Controller
 
     //todas as turmas
     public function teams(){
-        if($this->isAdmin(auth()->user()->id)){
-            $teams = Team::get()->all();
-        }else{
-            $teams = Team::select('teams.*', 'users_teams.*')
-            ->where('users_teams.id_user', auth()->user()->id)
-            ->join('users_teams', 'teams.id_teams', '=', 'users_teams.id_team')
-            ->get();
-        }
+        $teams = Team::select('teams.*', 'users_teams.*')
+        ->where('users_teams.id_user', auth()->user()->id)
+        ->join('users_teams', 'teams.id_teams', '=', 'users_teams.id_team')
+        ->get();
+        // if($this->isAdmin(auth()->user()->id)){
+        //     $teams = Team::get()->all();
+        // }else{
+        //     $teams = Team::select('teams.*', 'users_teams.*')
+        //     ->where('users_teams.id_user', auth()->user()->id)
+        //     ->join('users_teams', 'teams.id_teams', '=', 'users_teams.id_team')
+        //     ->get();
+        // }
         return view('user.teams', ['teams' => $teams]);
     }
 

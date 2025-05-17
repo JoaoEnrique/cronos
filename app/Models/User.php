@@ -55,4 +55,10 @@ class User extends Authenticatable
         // 0 = aluno
         return $admin;
     }
+
+    public function teams(){
+        return $this->belongsToMany(Team::class, 'users_teams', 'id_user', 'id_team')
+                    ->withPivot('*'); // ou os campos da tabela pivot que você precisa
+    }
+
 }

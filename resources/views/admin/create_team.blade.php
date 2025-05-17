@@ -21,7 +21,7 @@
                     <img src="{{asset('img/create_admin.png')}}" class="img-login" srcset="">
                 </div>
                 <div class="col">
-                    <form class="row g-3 form-login" method="POST" action="{{ route('admin.create_team') }}">
+                    <form class="row g-3 form-login" method="POST" action="{{ route('team.store') }}">
                         @csrf
                         <h1>Criar Turma</h1>
                         {{-- NOME --}}
