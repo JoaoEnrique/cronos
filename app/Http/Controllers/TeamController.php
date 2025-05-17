@@ -5,10 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\UserTeam;
+use App\Models\MessageTeam;
+use App\Models\FileMessage;
+use App\Models\Hospedagem;
 use Illuminate\Support\Facades\DB;
 
 class TeamController extends Controller
 {
+    public $hospedagemModel;
+    public $isHospedagem;
+
+    public function __construct()
+    {
+        // Atribua os valores das propriedades no construtor da classe.
+        $this->hospedagemModel = new Hospedagem();
+        $this->isHospedagem = $this->hospedagemModel->isHospedagem();
+    }
+
     public function index(){
        $teams = DB::table('teams')
         ->join('users_teams', 'teams.id_teams', '=', 'users_teams.id_team')
@@ -93,7 +106,38 @@ class TeamController extends Controller
         ]);
 
         return redirect("/team/$team->team_code")->with('success', 'Turma atualizada');
+    }
 
+    public function delete($id_team){
+        $team = Team::where('id_teams', $id_team)->get()->first();
+        $messages = MessageTeam::where('id_team', $id_team)->get()->all();
+        $users_team = UserTeam::where('id_team', $id_team)->get()->all();
+        
+        foreach($users_team as $user_team){
+            $user_team->delete();
+        }
+
+        foreach($messages as $message){
+            $files = FileMessage::where('id_message_team', $message->id_message_team)->get()->all();
+
+            foreach($files as $file){
+                $file->delete();
+                $path_file = public_path($file->path_file); //pega caminho da imagem localhost (public/img/img_account)
+
+                //verifica se tem imagem
+                if (file_exists($path_file)) {
+                    unlink($path_file); // Remove o arquivo
+                }
+
+            }
+
+            $message->delete();
+
+        }
+
+        $team->delete();
+
+        return redirect()->route('teams')->with('success', 'Turma excluida');
     }
 
 }

@@ -83,6 +83,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/delete/{id_team}', [TeamController::class, 'delete'])->name('team.delete');//APAGAR TURMA
         Route::get('/edit/{id_team}', [TeamController::class, 'edit'])->name('team.edit');//VIEW EDITAR TURMA
         Route::post('/edit/{id_team}', [TeamController::class, 'update']);//VIEW EDITAR TURMA
+        Route::post('/delete-team/{id_team}', [AdminController::class, 'deleteTeam'])->name('team.delete');//APAGAR TURMA
+
     });
 
     // 
