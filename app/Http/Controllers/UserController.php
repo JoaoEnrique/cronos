@@ -15,7 +15,7 @@ use App\Models\FileMessage;
 use App\Models\UserTeam;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Hospedagem;
@@ -43,35 +43,37 @@ class UserController extends Controller
     // CRIA USUÁRIO - Aluno
     public function createAccount(Request $request){
         try{
-            // validar dados
-            $dados = $request->validate([
-                'name' => ['required', 'string', 'max:255'],
-                'username' => ['required', 'string', 'max:255', 'unique:users'],
-                'email' => ['required', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            $request->validate([
+                'name' => ['required', 'string', 'max:50'],
+                'user_name' => [
+                    'required',
+                    'string',
+                    'max:20',
+                    Rule::unique('pacoca.users', 'user_name'),
+                    'regex:/^[a-zA-Z][a-zA-Z0-9_]*$/'
+                ],
+                'email' => ['required', 'string', 'email', 'max:50', Rule::unique('pacoca.users', 'email')],
+                'password' => ['required', 'string', 'min:8', 'max:50', 'confirmed'],
+                'password_confirmation' => ['required', 'string', 'max:50', 'min:8'],
             ]);
+    
 
-            $user = User::create([
-                'name' => $request->name,
-                'username' => $request->user_name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'img_account' => 'img/img_account/img_account.png',
-                'active' => '1',
-            ]);
-            
-            $student = Student::create([
-                'id_user' => $user->id,
-            ]);
+            $dados = $request->only(['name', 'user_name', 'email', 'phone', 'password', 'site', 'biography', 'sexo', 'birth_date']);
+            $dados['password'] = Hash::make($dados['password']);
 
-            // Loga usuário
-            if (Auth::attempt($dados, $request->filled('remember'))) {
-                $request->session()->regenerate();
-                return redirect()->route('teams')->with('success', 'Conta criada! Você está logado(a)');
+            $user = User::create($dados);
+            Auth::login($user);
+
+            if($user){
+                return redirect()->route('login')->with('success', 'Conta criada com sucesso');
             }
+            
+            return redirect()->route('login')->with('danger', 'Conta criada com erro');
 
-        }catch(Exception $e){
-            return redirect()->route('login')->with('danger', 'Não foi possível criar sua conta. Tente novamente mais tarde');
+        } catch (ValidationException $e) {
+            throw $e;
+        }catch(\Exception $e){
+            return redirect()->route('register')->with('danger', 'Erro ao criar conta! Tente novamente mais tarde: ' . $e->getMessage());
         }
     }
 

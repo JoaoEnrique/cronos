@@ -22,6 +22,21 @@
                 </div>
                 <div class="col">
                     <form class="row g-3 form-login" method="POST" action="{{ route('register') }}">
+                        @if(session()->has('success'))
+                            <div class="alert alert-success alert-dismissible fade alert-login show" role="alert">
+                                {{session()->get('success')}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        
+                        {{-- MENSAGEM ERRO --}}
+                        @if(session()->has('danger'))
+                            <div class="alert alert-danger alert-dismissible fade alert-login show" role="alert">
+                                {{session()->get('danger')}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
                         @csrf
                         <h1>Cadastre-se</h1>
                         {{-- NOME --}}
@@ -50,10 +65,10 @@
 
                         {{-- NOME DE USUÁRIO --}}
                         <div class="col-6 mb-3">
-                            <label for="username" class="form-label">Nome de usuário</label>
-                            <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{old('username')}}" autocomplete="username">
+                            <label for="user_name" class="form-label">Nome de usuário</label>
+                            <input type="text" class="form-control @error('user_name') is-invalid @enderror" id="user_name" name="user_name" value="{{old('user_name')}}" autocomplete="user_name">
                             
-                            @error('username')
+                            @error('user_name')
                                 <span class="invalid-feedback" role="alert" style="text-align: left">
                                     {{$message}}
                                 </span>
