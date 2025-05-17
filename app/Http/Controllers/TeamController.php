@@ -195,12 +195,32 @@ class TeamController extends Controller
             return view('errors.404_team');
         }
 
-        $messages = MessageTeam::
-            join('pacoca.users', 'messages_team.id_user', '=', 'users.id')
-            ->select('pacoca.users.id', 'pacoca.users.name', 'pacoca.users.user_name', 'pacoca.users.img_account', 'messages_team.*')
-            ->where('messages_team.id_team', $team->id_teams)
-            ->orderBy('messages_team.created_at', 'desc') // Adicione esta linha para ordenar por created_at em ordem decrescente
+        // 1. Consulta as mensagens normalmente (sem tentar fazer JOIN com outro banco)
+        $messages = DB::table('messages_team')
+            ->where('id_team', $team->id_teams)
+            ->orderBy('created_at', 'desc')
             ->get();
+
+        // 2. Pega os usuários da conexão 'pacoca'
+        $userIds = $messages->pluck('id_user')->unique()->toArray();
+
+        $users = DB::connection('pacoca')
+            ->table('users')
+            ->whereIn('id', $userIds)
+            ->select('id', 'name', 'user_name', 'img_account')
+            ->get()
+            ->keyBy('id');
+
+        // 3. Junta as informações de usuários com as mensagens
+        $messages = $messages->map(function ($message) use ($users) {
+            $user = $users[$message->id_user] ?? null;
+
+            return (object) array_merge((array) $message, [
+                'user_name' => $user->user_name ?? null,
+                'name' => $user->name ?? null,
+                'img_account' => $user->img_account ?? null,
+            ]);
+        });
             
 
         return view('user.team', ['team' => $team, 'messages' => $messages]);
