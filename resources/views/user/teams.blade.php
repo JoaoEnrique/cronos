@@ -182,7 +182,7 @@
                                 @csrf
                             </form>
                             
-                            <a class="btn btn-danger" style="width: 100%" onclick="event.preventDefault(); console.log(document.getElementById('form-delete-team-{{$team->id}}')); document.getElementById('form-delete-team-{{$team->id_teams}}').submit();">
+                            <a class="btn btn-danger" style="width: 100%" onclick="event.preventDefault(); console.log(document.getElementById('form-delete-team-{{$team->id_teams}}')); document.getElementById('form-delete-team-{{$team->id_teams}}').submit();">
                                 Excluir
                             </a>
                         </div>
