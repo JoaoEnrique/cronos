@@ -9,7 +9,7 @@
 --}}
 
 @extends('layouts.main')
-@section('title', 'Smart Job - Listar Administradores')
+@section('title', 'Cronos - Listar Administradores')
 
 {{-- Conteudo do site --}}
 @section('content')

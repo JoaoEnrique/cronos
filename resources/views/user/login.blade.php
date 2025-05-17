@@ -9,7 +9,7 @@
 --}}
 
 @extends('layouts.main')
-@section('title', 'Smart Job')
+@section('title', 'Cronos')
 
 {{-- Conteudo do site --}}
 @section('content')
@@ -91,7 +91,7 @@
         </div>
         
         {{-- BOTÃO WHATSAPP --}}
-        <a target="_BLANK" class="btn-adicionar-livro"  href="https://api.whatsapp.com/send?phone=+5528999571689&text=Smart Job" style="background: #40C351;">
+        <a target="_BLANK" class="btn-adicionar-livro"  href="https://api.whatsapp.com/send?phone=+5528999571689&text=Cronos" style="background: #40C351;">
             <img src="../img/whatsapp_green.png" height="40px" srcset="">
         </a>
     </body>

@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         // ADMIN
         User::create([
-            'name' => 'Smart Job',
+            'name' => 'Cronos',
             'email' => 'smartjob@gmail.com',
             'username' => 'smart_job',
             'password' => bcrypt(1234),

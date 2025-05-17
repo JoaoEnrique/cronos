@@ -186,7 +186,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `username`, `email_verified_at`, `password`, `img_account`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Smart Job', 'smartjob@gmail.com', 'smart_job', NULL, '$2y$10$Q2kGEHPyvlvWhkLJShZsieLcsElzFoLLQmXiDd202kHq/enxe47X2', 'img/img_account/1.png', '1', NULL, '2023-09-08 18:11:59', '2023-09-11 15:45:36'),
+(1, 'Cronos', 'smartjob@gmail.com', 'smart_job', NULL, '$2y$10$Q2kGEHPyvlvWhkLJShZsieLcsElzFoLLQmXiDd202kHq/enxe47X2', 'img/img_account/1.png', '1', NULL, '2023-09-08 18:11:59', '2023-09-11 15:45:36'),
 (2, 'João', 'joao@gmail.com', 'joao', NULL, '$2y$10$Zab9Lz642uCpCzvkwMZ0PeIJwfW9doMo2zqLWiGJZBFSIzPbeYZFG', 'img/img_account/2.png', '1', NULL, '2023-09-08 18:11:59', '2023-09-08 18:11:59'),
 (3, 'Teste', 'jebsantosalves@gmail.com', 'jebsantosalves@gmail.com', NULL, '$2y$10$De9Wg4z/up8TY.akZle8zOx1tkY7fGk57wMEqORl8HmZWq9g2dWiq', 'img/img_account/img_account.png', '1', NULL, '2023-09-11 14:53:16', '2023-09-11 14:53:16');
 

@@ -9,7 +9,7 @@
 --}}
 
 @extends('layouts.main')
-@section('title', 'Smart Job')
+@section('title', 'Cronos')
 
 {{-- Conteudo do site --}}
 @section('content')

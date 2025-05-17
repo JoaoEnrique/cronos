@@ -11,7 +11,7 @@
 
                 {{-- NOME DA PAGINA MENU CELULAR - NAO LOGADO --}}
                 @if(!auth()->check())
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="font-size: 30px">Smart Job</h5>
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="font-size: 30px">Cronos</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 @else
 
