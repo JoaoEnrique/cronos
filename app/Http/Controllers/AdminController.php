@@ -64,8 +64,14 @@ class AdminController extends Controller
     public function view_users_teams($id_team){
         $teams = DB::table('teams')
             ->join('users_teams', 'teams.id_teams', '=', 'users_teams.id_team')
-            ->where('id_team', $id_team)
-            ->select('users_teams.*', 'teams.*')
+            ->where('users_teams.id_team', $id_team)
+            ->select(
+                'users_teams.id_user',
+                'users_teams.id_team',
+                'teams.name as team_name',
+                'teams.id_teams as team_id'
+            )
+            ->limit(5)
             ->get();
 
         $userIds = $teams->pluck('id_user')->unique()->toArray();
@@ -75,17 +81,20 @@ class AdminController extends Controller
             ->get()
             ->keyBy('id');
 
-        // Combina tudo
         $teams = $teams->map(function ($team) use ($users) {
             $user = $users[$team->id_user] ?? null;
 
-            return (object) array_merge((array) $team, [
-                'id' => $user->id ?? null,
-                'user_name' => $user->user_name ?? null,
-                'name' => $user->name ?? null,
+            return (object) [
+                'id'     => $user->id,
+                'team_id'     => $team->team_id,
+                'team_name'   => $team->team_name,
+                'user_id'     => $user->id ?? null,
+                'user_name'   => $user->user_name ?? null,
+                'name'        => $user->name ?? null,
                 'img_account' => $user->img_account ?? null,
-            ]);
+            ];
         });
+
         return $teams;
     }
 

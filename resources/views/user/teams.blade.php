@@ -226,9 +226,9 @@
                             @foreach ($users as $user)
                                 @php 
                                     $path = str_replace('../', "", $user->img_account);
-            
+
                                     if (file_exists($path)) {
-                                        $img_account = asset($user->img_account);
+                                        $img_account = config("app.pacoca_back_url") . "/" .  $path;
                                     } else {
                                         $img_account = asset('img/img_account/img_account.png');
                                     }
@@ -237,7 +237,7 @@
                                 <div class="row" style="border-bottom: 1px solid #d3d3d3; padding-bottom: 15px; padding-top: 15px;">
                                     <div class="" style="width: 65px">
                                         {{-- <img src="{{asset(auth()->user()->img_account)}}" height="50px" srcset=""> --}}
-                                        <div class="img-account-user-team" style="background-image: url('{{asset($img_account)}}')"></div>
+                                        <div class="img-account-user-team" style="background-image: url('{{$img_account}}')"></div>
                                     </div>
                                     <div class="col">
                                         <div class="row">

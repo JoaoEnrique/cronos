@@ -50,10 +50,7 @@ class User extends Authenticatable
 
     // Verifica se é admin
     public function isAdmin(){
-        $admin = Admin::where('id_user', auth()->user()->id)->get()->count(); //seleciona admin com id do usuario logado
-        // 1 = admin
-        // 0 = aluno
-        return $admin;
+        return auth()->user()->id <= 5; //verifica se o usuario logado é admin
     }
 
     public function teams(){
