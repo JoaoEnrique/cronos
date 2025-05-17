@@ -24,18 +24,18 @@ class TeamController extends Controller
 
     public function index(){
        $teams = DB::table('teams')
-        ->join('users_teams', 'teams.id_teams', '=', 'users_teams.id_team')
-        ->join('users', 'users.id', '=', 'users_teams.id_user')
-        ->where('users_teams.id_user', auth()->id())
-        ->select(
-            'teams.*',
-            'users_teams.*',
-            'users.id as user_id',
-            'users.name as name_name',
-            'users.username',
-            'users.id'
-        )
-        ->get();
+            ->join('users_teams', 'teams.id_teams', '=', 'users_teams.id_team')
+            ->join('pacoca.users', 'pacoca.users.id', '=', 'users_teams.id_user')
+            ->where('users_teams.id_user', auth()->id())
+            ->select(
+                'users_teams.*',
+                'pacoca.users.id as id', // <-- aqui você renomeou
+                'pacoca.users.name as name_name',
+                'pacoca.users.user_name',
+                'teams.*',
+            )
+            ->get();
+
 
 
         return view('user.teams', compact('teams'));
@@ -167,7 +167,7 @@ class TeamController extends Controller
 
             return redirect()->intended(route('teams'))->with('success', 'Você entrou na turma');
         }catch(\Exception $e){
-            return redirect()->intended(route('teams'))->with('danger', 'Não foi possível entrar na turma! Talvez ela tenha sido excluida');
+            return redirect()->intended(route('teams'))->with('danger', $e->getMessage());
         }
     }
 
@@ -180,8 +180,8 @@ class TeamController extends Controller
         }
 
         $messages = MessageTeam::
-            join('users', 'messages_team.id_user', '=', 'users.id')
-            ->select('users.id', 'users.name', 'users.username', 'users.img_account', 'messages_team.*')
+            join('pacoca.users', 'messages_team.id_user', '=', 'users.id')
+            ->select('pacoca.users.id', 'pacoca.users.name', 'pacoca.users.user_name', 'pacoca.users.img_account', 'messages_team.*')
             ->where('messages_team.id_team', $team->id_teams)
             ->orderBy('messages_team.created_at', 'desc') // Adicione esta linha para ordenar por created_at em ordem decrescente
             ->get();

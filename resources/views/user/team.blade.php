@@ -209,10 +209,19 @@
             @endif
 
                 @foreach($messages as $message)
+                 @php 
+                        $path = str_replace('../', "", $message->user->img_account);
+
+                        if (file_exists($path)) {
+                            $img_account = config("app.pacoca_back_url") . "/" .  $path;
+                        } else {
+                            $img_account = asset('img/img_account/img_account.png');
+                        }
+                    @endphp
                     <div class="div-public-team" style="margin-top: 20px; padding: 20px; position:relative;">
                         <div class="row">
                             <div class="col-2 col-md-1">
-                                <div class="img-public-team" style="background-image: url('{{asset($message->img_account)}}')"></div>
+                                <div class="img-public-team" style="background-image: url('{{$img_account}}')"></div>
                             </div>
                             <div class="col">
                                 @php
@@ -241,14 +250,14 @@
                                 @endphp
 
                                 <h6> {{-- NOME --}}
-                                    <a style="color: #000; text-decoration: none" href="{{route('account', ['username' => $message->username])}}" href="">
-                                        {{  $message->name  }} - {{ $tempo }}
+                                    <a style="color: #000; text-decoration: none" href="{{route('account', ['username' => $message->user->user_name])}}" href="">
+                                        {{  $message->user->name  }}
                                     </a>
                                 </h6>
                                 {{-- NOME DE USUARIO --}}
                                 <p class="username-public-team">
-                                    <a style="color: #000; text-decoration: none" href="{{route('account', ['username' => $message->username])}}" href="">
-                                        {{ "@$message->username"   }}
+                                    <a style="color: #000; text-decoration: none" href="{{route('account', ['username' => $message->user->user_name])}}" href="">
+                                        {{ "@" . $message->user->user_name   }} - {{ $tempo }}
                                     </a>
                                 </p>
                             </div>

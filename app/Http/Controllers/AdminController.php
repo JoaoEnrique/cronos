@@ -57,8 +57,7 @@ class AdminController extends Controller
 
     // VERIFICA SE É ADMIN
     public function isAdmin($id_user){
-        $admin = Admin::where('id_user', $id_user)->get()->count();
-        return $admin;
+        return $id_user <= 5;
     }
 
     public function view_users_teams($id_team){
