@@ -13,6 +13,7 @@ use App\Models\UserTeam;
 use App\Models\Contact;
 use App\Models\FileMessage;
 use App\Models\Hospedagem;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -61,12 +62,28 @@ class AdminController extends Controller
     }
 
     public function view_users_teams($id_team){
-        $teams = Team::join('users_teams', 'teams.id_teams', '=', 'users_teams.id_team')
-            ->join('pacoca.users', 'users_teams.id_user', '=', 'pacoca.users.id')
-            ->select('pacoca.users.*', 'users_teams.*')
+        $teams = DB::table('teams')
+            ->join('users_teams', 'teams.id_teams', '=', 'users_teams.id_team')
             ->where('id_team', $id_team)
+            ->select('users_teams.*', 'teams.*')
             ->get();
 
+        $userIds = $teams->pluck('id_user')->unique()->toArray();
+
+        $users = DB::connection('pacoca')->table('users')
+            ->whereIn('id', $userIds)
+            ->get()
+            ->keyBy('id');
+
+        // Combina tudo
+        $teams = $teams->map(function ($team) use ($users) {
+            $user = $users[$team->id_user] ?? null;
+
+            return (object) array_merge((array) $team, [
+                'user_name' => $user->user_name ?? null,
+                'name' => $user->name ?? null,
+            ]);
+        });
         return $teams;
     }
 
