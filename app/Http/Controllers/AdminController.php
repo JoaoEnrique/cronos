@@ -80,8 +80,10 @@ class AdminController extends Controller
             $user = $users[$team->id_user] ?? null;
 
             return (object) array_merge((array) $team, [
+                'id' => $user->id ?? null,
                 'user_name' => $user->user_name ?? null,
                 'name' => $user->name ?? null,
+                'img_account' => $user->img_account ?? null,
             ]);
         });
         return $teams;
