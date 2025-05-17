@@ -216,12 +216,9 @@ class TeamController extends Controller
             $user = $users[$message->id_user] ?? null;
 
             return (object) array_merge((array) $message, [
-                'user_name' => $user->user_name ?? null,
-                'name' => $user->name ?? null,
-                'img_account' => $user->img_account ?? null,
+                'user' => $user, // Aqui colocamos o usuário completo como um objeto
             ]);
         });
-            
 
         return view('user.team', ['team' => $team, 'messages' => $messages]);
     }
