@@ -266,7 +266,7 @@
                             <div class="col">
                                 @php
                                     $utils_controller = app(App\Http\Controllers\UtilsController::class);
-                                    $texto_formatado = $utils_controller->clearText($utils_controller->censorText($message->text));
+                                    $texto_formatado = $message->text ? $utils_controller->clearText($utils_controller->censorText($message->text)) : "";
                                 @endphp
 
                                 <p class="">{!! nl2br($texto_formatado) !!}</p>
