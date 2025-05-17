@@ -13,91 +13,80 @@
 
 @section('content')
 <body class="body-main" id="home">
-    @include('layouts/menu')
+    @include('layouts.menu')
 
-    <section id="about">
-        <div class="container container-about">
-            <div class="row" style="flex-wrap: nowrap;">
-                <div class="col-sm-12 col-md-12 col-lg-12 form-login" style="margin-top: 100px; width: 100%; padding: 50px;">
-                    <h1>CRONOS</h1>
-                    <div class="line"></div>
-                    <p>
-                       Crie grupos particulares e convide seus amigos por meio de um código .
-                    </p>
-                </div>
+    <section id="about" class="py-5" style="min-height: 100vh; display: flex; align-items: center; background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%);">
+        <div class="container text-center">
+            <div class="mb-5">
+                <h1 class="display-3 fw-bold text-dark" style="margin-top: 50px">CRONOS</h1>
             </div>
 
-            <form class="col-sm-12 col-md-12 col-lg-12 show-item row g-3 form-login" method="POST" action="{{ route('team.store') }}" style="margin-top: 100px; margin-bottom: 40px; width: 100%; padding: 50px;">
-                @csrf
-                <h1>Criar Turma</h1>
-                {{-- NOME --}}
-                <div class="mb-3">
-                    <label for="name" class="form-label">Nome</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{old('name')}}" autocomplete="name">
-                    
-                    @error('name')
-                        <span class="invalid-feedback" role="alert" style="text-align: left">
-                            {{$message}}
-                        </span>
-                    @enderror
-                </div>
+            <div class="bg-white p-5 rounded shadow-lg" style="max-width: 700px; margin: 0 auto;">
+                <h2 class="mb-4 text-primary">Crie sua turma</h2>
+                <p class="mb-4">Grupos particulares com convite por código. Simples, rápido e seguro.</p>
 
-                {{-- Descrição --}}
-                <div class="mb-3">
-                    <label for="text" class="form-label">Descrição</label>
-                    <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" value="{{old('description')}}" autocomplete="description">
-                    
-                    @error('description')
-                        <span class="invalid-feedback" role="alert" style="text-align: left">
-                            {{$message}}
-                        </span>
-                    @enderror
-                </div>
+                <form method="POST" action="{{ route('team.store') }}">
+                    @csrf
 
-                {{-- Fechado --}}
-                <div class="mb-3">
-                    <input class="form-check-input" type="checkbox" id="closed" name="closed">
-                    <label class="form-check-label" for="closed">
-                        Turma fechada
-                    </label>
-                    <div id="emailHelp" class="form-text">Se a turma for fechada, apenas administradores podem fazer publicações.</div>
-                </div>
-
-                <div class="mb-3">
-                    Cor:
-                </div>
-                <div class="col-2" style="margin: 0 5px">
-                    <input class="form-check-input d-none" type="radio" name="color" id="flexRadioDefault1" checked value="#5bb4ff">
-                    <label class="label-color" for="flexRadioDefault1" style="background: var(--primary-blue)"></label>
+                    {{-- Nome --}}
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Nome da Turma">
+                        <label for="name">Nome</label>
+                        @error('name')
+                            <div class="invalid-feedback text-start">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="col-2 mb-5" style="margin: 0 5px">
-                    <input class="form-check-input d-none" type="radio" name="color" id="flexRadioDefault2" value="#009788">
-                    <label class="label-color" for="flexRadioDefault2" style="background: #009788"></label>
+
+                    {{-- Descrição --}}
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" value="{{ old('description') }}" placeholder="Descrição da Turma">
+                        <label for="description">Descrição</label>
+                        @error('description')
+                            <div class="invalid-feedback text-start">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="col-2 mb-5" style="margin: 0 5px">
-                    <input class="form-check-input d-none" type="radio" name="color" id="flexRadioDefault3" value="rgb(25, 103, 210)">
-                    <label class="label-color" for="flexRadioDefault3" style="background: rgb(25, 103, 210)"></label>
-                    </div>    
-                    <div class="col-2 mb-5" style="margin: 0 5px">
-                    <input class="form-check-input d-none" type="radio" name="color" id="flexRadioDefault4" value="rgb(95, 99, 104)">
-                    <label class="label-color" for="flexRadioDefault4" style="background: rgb(95, 99, 104)"></label>
-                    </div>    
-                    <div class="col-2 mb-5" style="margin: 0 5px">
-                    <input class="form-check-input d-none" type="radio" name="color" id="flexRadioDefault5" value="rgb(232, 113, 10)">
-                    <label class="label-color" for="flexRadioDefault5" style="background: rgb(232, 113, 10)"></label>
-                    </div>                     
-                <div class="mb-2">
-                    <button class="btn btn-login" type="submit">Criar Turma</button>
-                </div>
-                <div class="" style="text-align: center">
-                </div>
-            </form>
+
+                    {{-- Turma fechada --}}
+                    <div class="form-check mb-3 text-start">
+                        <input class="form-check-input" type="checkbox" id="closed" name="closed">
+                        <label class="form-check-label" for="closed">
+                            Turma fechada
+                        </label>
+                        <div class="form-text">Apenas administradores podem publicar.</div>
+                    </div>
+
+                    {{-- Cores --}}
+                    <div class="mb-4 text-start">
+                        <label class="form-label d-block mb-2">Cor da turma:</label>
+                        <div class="d-flex flex-wrap gap-3">
+                            @php
+                                $colors = [
+                                    ['id' => '1', 'hex' => '#5bb4ff'],
+                                    ['id' => '2', 'hex' => '#009788'],
+                                    ['id' => '3', 'hex' => 'rgb(25, 103, 210)'],
+                                    ['id' => '4', 'hex' => 'rgb(95, 99, 104)'],
+                                    ['id' => '5', 'hex' => 'rgb(232, 113, 10)'],
+                                ];
+                            @endphp
+                            @foreach ($colors as $color)
+                                <div>
+                                    <input class="form-check-input d-none" type="radio" name="color" id="color{{ $color['id'] }}" value="{{ $color['hex'] }}" {{ $loop->first ? 'checked' : '' }}>
+                                    <label class="label-color rounded-circle d-inline-block" for="color{{ $color['id'] }}" style="background: {{ $color['hex'] }}; width: 32px; height: 32px; cursor: pointer; border: 2px solid #ccc;"></label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">Criar Turma</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        
     </section>
 
     <script src="{{ asset('js/code.jquery.com_jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 </body>
-@include("layouts/footer")
+@include('layouts.footer')
 @endsection
