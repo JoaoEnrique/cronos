@@ -39,6 +39,7 @@
                         @endif
                         @csrf
                         <h1>Cadastre-se</h1>
+                        <p>Se tiver uma conta no Paçoca entre com mesmo login e senha</p>
                         {{-- NOME --}}
                         <div class="mb-3">
                             <label for="name" class="form-label">Nome</label>
