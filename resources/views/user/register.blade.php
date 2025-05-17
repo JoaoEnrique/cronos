@@ -17,7 +17,7 @@
         @include('layouts/menu')
         <div class="container container-login">
             <div class="row row-login">
-                <div class="col col-img-register" style="background: #ffc428">
+                <div class="col col-img-register" style="background: #5bb4ff">
                     <img src="{{asset('img/register.png')}}" class="img-login" srcset="">
                 </div>
                 <div class="col">

@@ -86,7 +86,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col col-img-login" style="background: #ffc428">
+                <div class="col col-img-login" style="background: var(--primary-blue)">
                     <img src="{{asset('img/login.png')}}" class="img-login" srcset="">
                 </div>
             </div>

@@ -4,7 +4,7 @@
             <img src="{{asset('img/menu.svg')}}" height="25px" srcset="">
         </button>
         <a class="navbar-brand logo" href="{{route('index')}}">
-            <img class="logo-nav" src="{{asset('img/logo_fundo.png')}}" height="100%" srcset="">
+            <img class="logo-nav" src="{{asset('img/logo.png')}}" height="100%" srcset="">
         </a>
         <div class="offcanvas text-bg-dark text-bg-dark offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header" style="padding-bottom: 0!important; min-height: 100px;">
@@ -85,51 +85,6 @@
                             </a>
                         </li>
                     </button>
-
-                    <button type="button" class="link-close-menu" data-bs-dismiss="offcanvas" aria-label="Close">{{-- Fechar menu ao ir para link --}}
-                        <li class="nav-item">
-                            <a id="link-about" class="nav-link" href="{{route('about')}}" aria-label="Close">
-                                Sobre Nós
-                            </a>
-                        </li>
-                    </button>
-
-                    <button type="button" class="link-close-menu" data-bs-dismiss="offcanvas" aria-label="Close">{{-- Fechar menu ao ir para link --}}
-                        <li class="nav-item">
-                            <a id="link-service" class="nav-link" href="{{route('services')}}">
-                                Serviços
-                            </a>
-                        </li>
-                    </button>
-
-                    <button type="button" class="link-close-menu" data-bs-dismiss="offcanvas" aria-label="Close">{{-- Fechar menu ao ir para link --}}
-                        <li class="nav-item">
-                            <a id="link-project" class="nav-link" href="{{route('project')}}" aria-label="Close">
-                                Projetos
-                            </a>
-                        </li>
-                    </button>
-
-
-
-                    @if(auth()->check() && $isAdmin)
-                        <li class="nav-item">
-                            <a id="link-contact" class="nav-link" href="{{route('admin.contact')}}" aria-label="Close">
-                                Contato
-                            </a>
-                        </li>
-
-                    @else
-                        <button type="button" class="link-close-menu" data-bs-dismiss="offcanvas" aria-label="Close">{{-- Fechar menu ao ir para link --}}
-                            <li class="nav-item">
-                                <a id="link-contact" class="nav-link" href="{{route('contact')}}" aria-label="Close">
-                                    Contato
-                                </a>
-                            </li>
-                        </button>
-                    @endif
-
-        
                     <hr>
                     {{-- Se for admin,  mostra criar quiz e tabelas de listagem--}}
                     @if(auth()->check() && $isAdmin)

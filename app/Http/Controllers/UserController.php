@@ -185,15 +185,27 @@ class UserController extends Controller
     public function login(Request $request) {
         // validar dados
         $dados = $request->validate([
-            'email' => ['required', 'email'],
+            'login' => ['required'],
             'password' => ['required']
         ]);
-
-        // Loga usuário
-        if (Auth::attempt($dados, $request->filled('remember'))) {
+    
+        // Verificar se o campo fornecido é um email ou um nome de usuário
+        $fieldType = filter_var($dados['login'], FILTER_VALIDATE_EMAIL) ? 'email' : 'user_name';
+    
+        // Ajustar os dados para autenticação
+        $credentials = [
+            $fieldType => $dados['login'], // Usa o tipo de campo detectado
+            'password' => $dados['password'],
+        ];
+    
+        if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended(route('teams'))->with('success', 'Você está logado(a) e consegue ver todas as turmas abaixo');
+            return redirect()->intended('');
         }
+    
+        return back()->withErrors([
+            'password' => 'O email e/ou senha estão inválidos'
+        ])->withInput();
     
         //email ou senha errado
         return back()->withErrors(['password' => 'O email e/ou senha são inválidos'])->withInput();

@@ -11,6 +11,8 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    protected $connection = 'pacoca'; // Define a conexão do sistema A
+
 
     /**
      * The attributes that are mass assignable.

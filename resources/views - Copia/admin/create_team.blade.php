@@ -19,7 +19,7 @@
         @include('layouts/menu')
         <div class="container container-login">
             <div class="row row-login">
-                <div class="col col-img-register" style="background: #ffc428">
+                <div class="col col-img-register" style="background: #5bb4ff">
                     <img src="{{asset('img/create_admin.png')}}" class="img-login" srcset="">
                 </div>
                 <div class="col">
@@ -63,8 +63,8 @@
                             Cor:
                         </div>
                         <div class="col-2" style="margin: 0 5px">
-                            <input class="form-check-input d-none" type="radio" name="color" id="flexRadioDefault1" checked value="#ffc428">
-                            <label class="label-color" for="flexRadioDefault1" style="background: #ffc428"></label>
+                            <input class="form-check-input d-none" type="radio" name="color" id="flexRadioDefault1" checked value="#5bb4ff">
+                            <label class="label-color" for="flexRadioDefault1" style="background: var(--primary-blue)"></label>
                           </div>
                           <div class="col-2 mb-5" style="margin: 0 5px">
                             <input class="form-check-input d-none" type="radio" name="color" id="flexRadioDefault2" value="#009788">

@@ -45,9 +45,9 @@
                         <h1>Login</h1>
                         {{-- EMAIL --}}
                         <div class="mb-4 form-floating">
-                          <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{old('email')}}" autocomplete="email" placeholder="name@example.com" autofocus>
-                          <label for="email">Email</label>                          
-                            @error('email')
+                          <input type="text" class="form-control @error('login') is-invalid @enderror" id="login" name="login" value="{{old('login')}}" autocomplete="login" placeholder="Email ou nome de usuário" autofocus>
+                          <label for="login">Login</label>                          
+                            @error('login')
                                 <span class="invalid-feedback" role="alert" style="text-align: left">
                                     {{$message}}
                                 </span>
@@ -84,7 +84,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col col-img-login" style="background: #ffc428">
+                <div class="col col-img-login" style="background: var(--primary-blue)">
                     <img src="{{asset('img/login.png')}}" class="img-login" srcset="">
                 </div>
             </div>
