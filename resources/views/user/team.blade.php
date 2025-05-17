@@ -265,12 +265,10 @@
                         <div class="row">
                             <div class="col">
                                 @php
-                                    $padrao_link = '/(https?:\/\/[^\s]+)/';
-                                    $texto_formatado = preg_replace_callback($padrao_link, function ($match) {
-                                        $url = $match[0];
-                                        return "<a href='$url' target='_blank' style='word-wrap: break-word;'>$url</a>";
-                                    }, $message->text);
-                                    @endphp
+                                    $utils_controller = app(App\Http\Controllers\UtilsController::class);
+                                    $texto_formatado = $utils_controller->clearText($utils_controller->censorText($message->text));
+                                @endphp
+
                                 <p class="">{!! nl2br($texto_formatado) !!}</p>
                             </div>
                         </div>
