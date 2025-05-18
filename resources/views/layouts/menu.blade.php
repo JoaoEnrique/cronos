@@ -72,10 +72,6 @@
                 @endif
             </div>
             <div class="container-fluid offcanvas-body" style="justify-content: space-between; align-items: center;">
-                <ul class="navbar-nav">
-                    <hr style="margin: 0!important">
-                </ul>
-
                 {{-- MENU --}}
                 <ul class="navbar-nav">
                     <button type="button" class="link-close-menu" data-bs-dismiss="offcanvas" aria-label="Close">{{-- Fechar menu ao ir para link --}}
@@ -85,7 +81,6 @@
                             </a>
                         </li>
                     </button>
-                    <hr>
                     {{-- Se for admin,  mostra criar quiz e tabelas de listagem--}}
                     {{-- @if(auth()->check() && $isAdmin)
                         @if ($isAdmin)
@@ -137,7 +132,6 @@
                         </li>
                     @endif
 
-                    <hr>
                         {{-- Se o usuário não for logado --}}
                     @if(!auth()->check())
                         {{-- Entrar --}}

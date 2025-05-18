@@ -1046,6 +1046,12 @@ div.col-img-conta {
     #about p {
         text-align: center;
         font-size: 19px;
+        color: #282828;
+    }
+
+    .label-color {
+        width: 50px !important;
+        height: 50px !important;
     }
 
     #about, #project, .col-text-about{
