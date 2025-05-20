@@ -96,6 +96,8 @@
                                             
                                         </p>
                                     </div>
+                                    
+                                        @can("delete-team", $team)
                                         <div class="col-2" style="position: absolute; top: 0; right: 0;z-index: 999!important;">
                                             <div class="config-card-teams">
                                                 <ul class="navbar-nav">
@@ -111,7 +113,6 @@
                                                         <textarea class="d-none team_code{{$team->id_teams}}">{{$team->team_code}}</textarea>
 
                                                         <ul class="dropdown-menu dropdown-100">
-                                                            @if($isAdmin || auth()->user()->id == $team->id_user)
                                                                 <li>
                                                                     <!-- Botão para abrir o modal -->
                                                                     <a  type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cod-team-{{$team->id_teams}}">
@@ -126,18 +127,12 @@
                                                                         Apagar
                                                                     </a>
                                                                 </li>
-                                                            @endif
-                                                            <li>
-                                                                <!-- Botão para abrir o modal -->
-                                                                <a  type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#view-users-team-{{$team->id_teams}}">
-                                                                    Usuários
-                                                                </a>
-                                                            </li>
                                                         </ul>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
+                                        @endcan
                                        
                                 </div>
                             </div>

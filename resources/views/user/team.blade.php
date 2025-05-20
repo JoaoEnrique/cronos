@@ -173,21 +173,21 @@
                     <div class="row">
                         <div class="col" style="margin-top: 20px">
                             <div class="row row-file-team" style="flex-wrap: nowrap">
-                                <div class="col-4 col-md-2 col-xl-2">
+                                <div class="col-1">
                                     <label for="img">
                                         <div class="img">
                                             <img src="{{asset('img/add-image.png')}}" class="img-add-file" srcset="">
                                         </div>
                                     </label>
                                 </div>
-                                <div class="col-4  col-md-2 col-xl-2">
+                                <div class="col-1">
                                     <label for="video">
                                         <div class="video">
                                             <img src="{{asset('img/add-video.png')}}" class="img-add-file" srcset="">
                                         </div>
                                     </label>
                                 </div>
-                                <div class="col-4 col-md-2 col-xl-2">
+                                <div class="col-1">
                                     <label for="file">
                                         <div class="file">
                                             <img src="{{asset('img/add-file.png')}}" class="img-add-file" srcset="">
@@ -397,7 +397,7 @@
     @if(count($messages) >=1)
         @foreach ($messages as $message)
             <!-- APAGAR -->
-            <div class="modal fade" id="confirm-delete-message-{{$message->id_message_team}}" tabindex="-1" aria-labelledby="confirm-delete-message-{{$message->id_message_team}}" aria-hidden="true">
+            <div class="modal modal-lg fade" id="confirm-delete-message-{{$message->id_message_team}}" tabindex="-1" aria-labelledby="confirm-delete-message-{{$message->id_message_team}}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -427,7 +427,7 @@
 
 
             <!-- EDITAR -->
-            <div class="modal fade" id="confirm-edit-message-{{$message->id_message_team}}" tabindex="-1" aria-labelledby="confirm-edit-message-{{$message->id_message_team}}" aria-hidden="true">
+            <div class="modal modal-lg fade" id="confirm-edit-message-{{$message->id_message_team}}" tabindex="-1" aria-labelledby="confirm-edit-message-{{$message->id_message_team}}" aria-hidden="true">
                 <div class="modal-dialog modal-edit-message">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -453,21 +453,24 @@
                                 
                                 <div class="row">
                                     <div class="col" style="margin-top: 20px" >
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 100%">
+                                            Cancelar
+                                        </button>
+                                        <form id="form-edit-message-{{$message->id_message_team}}" action="{{route('message.delete', ['id_message_team' => $message->id_message_team])}}" method="post" class="d-none">
+                                            @csrf
+                                        </form>
+                                        
+                                    </div>
+                                    <div class="col" style="margin-top: 20px" >
                                         <button style="width: 100%;" class="btn btn-yellow" type="submit">Atualizar</button>
                                     </div>
                                 </div>
                             </form>
 
                         </div>
-                        <div class="modal-footer" style="flex-wrap: nowrap">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 100%">
-                                Cancelar
-                            </button>
-
-                            <form id="form-edit-message-{{$message->id_message_team}}" action="{{route('message.delete', ['id_message_team' => $message->id_message_team])}}" method="post" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
+                        {{-- <div class="modal-footer" style="flex-wrap: nowrap">
+                            
+                        </div> --}}
                         {{-- {{ route('message.delete', ['id_team' => $message->id_teams]) }} --}}
                     </div>
                 </div>
@@ -478,7 +481,7 @@
 
     {{-- APAGAR TURMA --}}
     <!-- Modal de Confirmação de Exclusão -->
-    <div class="modal fade" id="confirm-delete-team-{{$team->id_teams}}" tabindex="-1" aria-labelledby="confirm-delete-team-{{$team->id_teams}}" aria-hidden="true">
+    <div class="modal modal-lg fade" id="confirm-delete-team-{{$team->id_teams}}" tabindex="-1" aria-labelledby="confirm-delete-team-{{$team->id_teams}}" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -508,7 +511,7 @@
 
 
     {{-- Modal ver usuarios da turma --}}
-    <div class="modal fade" id="view-users-team-{{$team->id_teams}}" tabindex="-1" aria-labelledby="view-users-team-{{$team->id_teams}}" aria-hidden="true">
+    <div class="modal modal-lg fade" id="view-users-team-{{$team->id_teams}}" tabindex="-1" aria-labelledby="view-users-team-{{$team->id_teams}}" aria-hidden="true">
         <div class="modal-dialog" style="margin: 0 auto">
             <div class="modal-content">
                 <div class="modal-header">
@@ -546,11 +549,11 @@
                                 @can('remover-user', [$team, $user])
                                     <div class="col" style="margin-bottom: 10px;">
                                         <!-- Botão para abrir o modal -->
-                                        <a style="width: 100%"  type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#remove-user-{{$user->id}}-{{$team->id_teams}}">
+                                        <a style="width: @if($user->id == auth()->user()->id) 100% @else 50px @endif"  type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#remove-user-{{$user->id}}-{{$team->id_teams}}">
                                             @if($user->id == auth()->user()->id)
                                                 Sair
                                             @else
-                                                Remover
+                                                <i style="height: 20px" data-lucide="trash"></i>
                                             @endif
                                         </a>
                                     </div>
@@ -580,7 +583,7 @@
         @can('remover-user', [$team, $user])
             {{-- Modal de remover usuario --}}
             <!-- Modal de remover usuario -->
-            <div class="modal fade" id="remove-user-{{$user->id}}-{{$team->id_teams}}" tabindex="-1" aria-labelledby="remove-user-{{$user->id}}-{{$team->id_teams}}" aria-hidden="true">
+            <div class="modal modal-lg fade" id="remove-user-{{$user->id}}-{{$team->id_teams}}" tabindex="-1" aria-labelledby="remove-user-{{$user->id}}-{{$team->id_teams}}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">

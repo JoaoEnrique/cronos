@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-xl fixed-top">
-    <div class="container-fluid">
+    <div class="container-fluid container-fluid-logo">
         <button class="navbar-toggler" style="border: 0!important" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <img src="{{asset('img/menu.svg')}}" height="25px" srcset="">
         </button>
