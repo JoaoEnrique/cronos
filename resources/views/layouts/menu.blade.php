@@ -79,6 +79,7 @@
                 <button type="button" class="link-close-menu" data-bs-dismiss="offcanvas" aria-label="Close">{{-- Fechar menu ao ir para link --}}
                     <li class="nav-item">
                         <a id="link-home" class="nav-link" href="{{route('index')}}">
+                            <i data-lucide="home"></i>
                             Home
                         </a>
                     </li>
@@ -138,10 +139,16 @@
                 @if(!auth()->check())
                     {{-- Entrar --}}
                     <li class="nav-item">
-                        <a  class="nav-link @if(Route::getCurrentRoute()?->getName() == 'login') active @endif" href="{{route('login')}}">Entrar</a>
+                        <a  class="nav-link @if(Route::getCurrentRoute()?->getName() == 'login') active @endif" href="{{route('login')}}">
+                            <i data-lucide="log-in"></i>
+                            Entrar
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link @if(Route::getCurrentRoute()?->getName() == 'register') active @endif" href="{{route('register')}}">Cadastrar</a>
+                        <a  class="nav-link @if(Route::getCurrentRoute()?->getName() == 'register') active @endif" href="{{route('register')}}">
+                            <i data-lucide="user-plus"></i>
+                            Cadastrar
+                        </a>
                     </li>
 
                 {{-- Se o usuário for logado --}}

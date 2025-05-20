@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('remover-user', function ($user, $team, $userToRemove) {
-            return ($user->id <= 5 || $user->id == $team->id_user) && $user->id <= $userToRemove->id;
+            return ($user->id <= 5 || $user->id == $team->id_user || $user->id == $userToRemove->id) && $user->id <= $userToRemove->id;
         });
         Gate::define('delete-team', function ($user, $team) {
             return ($user->id <= 5 || $user->id == $team->id_user) && $user->id <= $team->id_user;
@@ -36,12 +36,18 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('update-team', function ($user, $team) {
             return ($user->id <= 5 || $user->id == $team->id_user) && $user->id <= $team->id_user;
         });
+        Gate::define('view-messages', function ($user, $team) {
+            $isMember = DB::table('users_teams')
+            ->where('id_team', $team->id_teams)
+            ->where('id_user', $user->id)
+            ->exists();
+            return $isMember;
+        });
         Gate::define('post-team', function ($user, $team) {
             $isMember = DB::table('users_teams')
             ->where('id_team', $team->id_teams)
             ->where('id_user', $user->id)
             ->exists();
-
 
             return (
                 ($team->closed && $user->id == $team->id_user && $isMember)

@@ -547,7 +547,11 @@
                                     <div class="col" style="margin-bottom: 10px;">
                                         <!-- Botão para abrir o modal -->
                                         <a style="width: 100%"  type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#remove-user-{{$user->id}}-{{$team->id_teams}}">
-                                            Remover
+                                            @if($user->id == auth()->user()->id)
+                                                Sair
+                                            @else
+                                                Remover
+                                            @endif
                                         </a>
                                     </div>
                                 @endcan

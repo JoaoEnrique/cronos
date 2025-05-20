@@ -39,17 +39,20 @@ footer{
     height: 85px!important;
 }
 
-.container-fluid{
+/* .navbar .container-fluid{
     padding: 0!important;
     margin-left: -10px!important;
-}
+} */
 
 
 .nav-link{
     color: #FFFFFF!important;
-    font-size: 20px!important;
+    /* font-size: 20px!important; */
     margin: 10px!important;
-    font-weight: 600!important;
+    /* font-weight: 600!important; */
+    display: flex!important;
+    gap: 10px;
+    align-items: center;
 }
 
 .link-footer{
@@ -1160,9 +1163,10 @@ div.col-img-conta {
 
     .nav-link{
         font-size: 20px!important;
+        font-weight: 600!important;
         height: 40px;
     }
-
+    
     .nav-item{
         height: 50px;
     }

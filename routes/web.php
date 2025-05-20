@@ -66,10 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{team_code}', [TeamController::class, 'view'])->name('team');//turma especifica
     });
 
-    // SÓ ADMIN PODE ACESSAR
-    Route::middleware('admin')->group(function () {
-        Route::post('/remove-user/{id}', [AdminController::class, 'removeUserTeam'])->name('team.remove_user');//APAGAR MENSAGEM
-    });
+    Route::post('/remove-user/{id}', [TeamController::class, 'removeUser'])->name('team.remove_user');//APAGAR MENSAGEM
 });
 
 
