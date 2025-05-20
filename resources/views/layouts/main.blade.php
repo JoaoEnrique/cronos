@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('css/style.css?v=11') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css?v=13') }}">
      <script src="{{asset('lucide@0.511.0/dist/umd/lucide.min.js')}}"></script>
      <script src="https://unpkg.com/lucide@latest"></script>
     <link href="{{asset('bootstrap-5.3.0-dist/css/bootstrap.min.css')}}" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
