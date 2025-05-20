@@ -15,10 +15,10 @@
 <body class="body-main" id="home">
     @include('layouts.menu')
 
-    <section id="about" class="py-5" style="min-height: 100vh; display: flex; align-items: center; background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%);">
+    <section id="about" class="py-5" style="min-height: 100vh; display: flex; align-items: center; background: var(--primary-blue);">
         <div class="container text-center">
             <div class="mb-5">
-                <h1 class="display-3 fw-bold text-dark" style="margin-top: 50px">CRONOS</h1>
+                <h1 class="display-3 fw-bold" style="margin-top: 50px; color: #fff">CRONOS</h1>
             </div>
 
             <div class="bg-white p-5 rounded shadow-lg" style="max-width: 700px; margin: 0 auto;">
@@ -89,4 +89,10 @@
     <script src="{{ asset('js/main.js') }}"></script>
 </body>
 @include('layouts.footer')
+
+<style>
+    label {
+        color: #000!important;
+    }
+</style>
 @endsection
