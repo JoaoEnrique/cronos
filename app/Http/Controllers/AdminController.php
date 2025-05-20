@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
@@ -291,8 +292,16 @@ class AdminController extends Controller
     }
 
     public function removeUserTeam(Request $request, $id){
-        $user_team = UserTeam::where('id_user', $request->id_user)
-        ->where('id_team', $request->id_team)->get()->first()->delete();
+        $team = Team::where('id_teams', $request->id_team)->get()->first();
+        if(!$team) return back()->with('danger', 'Turma não encontrada');
+
+        $user = User::find($request->id_user);
+        if(!$user)return back()->with('danger', 'Turma não encontrada');
+        
+        if(Gate::denies('remover-user', [$team, $user]))
+            return back()->with('danger', 'Você não tem permissão para remover este usuário');
+
+        UserTeam::where('id_user', $request->id_user)->where('id_team', $request->id_team)->get()->first()->delete();
 
         return back()->with('success', 'O usuário foi removido da turma');
     }

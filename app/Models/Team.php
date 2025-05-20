@@ -18,4 +18,10 @@ class Team extends Model
         'closed',
         'color'
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'users_teams', 'id_team', 'id_user')
+                    ->withPivot('*'); // ou os campos da tabela pivot que você precisa
+    }
 }

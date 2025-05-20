@@ -543,12 +543,14 @@
                                         <p style="font-size: 15px"><a href="/{{$user->user_name}}" style="color: #000; text-decoration: none">{{"@" . $user->user_name}}</a></p>
                                     </div>
                                 </div>
-                                <div class="col" style="margin-bottom: 10px;">
-                                    <!-- Botão para abrir o modal -->
-                                    <a style="width: 100%"  type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#remove-user-{{$user->id}}-{{$team->id_teams}}">
-                                        Remover
-                                    </a>
-                                </div>
+                                @can('remover-user', [$team, $user])
+                                    <div class="col" style="margin-bottom: 10px;">
+                                        <!-- Botão para abrir o modal -->
+                                        <a style="width: 100%"  type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#remove-user-{{$user->id}}-{{$team->id_teams}}">
+                                            Remover
+                                        </a>
+                                    </div>
+                                @endcan
                             </div>
                         </div>
                     @endforeach
@@ -571,34 +573,37 @@
     @endphp
 
     @foreach ($users as $user)
-        <!-- Modal de remover usuario -->
-        <div class="modal fade" id="remove-user-{{$user->id}}-{{$team->id_teams}}" tabindex="-1" aria-labelledby="remove-user-{{$user->id}}-{{$team->id_teams}}" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="remove-user-{{$user->id}}-{{$team->id_teams}}">Remover usuário</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Tem certeza de que deseja remover esse usuário da turma?
-                    </div>
-                    <div class="modal-footer" style="flex-wrap: nowrap">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 100%">
-                            Cancelar
-                        </button>
-                        <!-- Botão para abrir o modal -->
-                        <form id="form-remove-user-{{$user->id}}" action="{{ route('team.remove_user', ['id' => $user->id]) }}" method="post" class="d-none">
-                            <input type="text" name="id_user" id="id_user" value="{{$user->id}}">
-                            <input type="text" name="id_team" id="id_team" value="{{$team->id_teams}}">
-                            @csrf
-                        </form>
-                        
-                        <a class="btn btn-danger" style="width: 100%" onclick="event.preventDefault(); console.log(document.getElementById('form-remove-user-{{$user->id}}')); document.getElementById('form-remove-user-{{$user->id}}').submit();">
-                            Remover
-                        </a>
+        @can('remover-user', [$team, $user])
+            {{-- Modal de remover usuario --}}
+            <!-- Modal de remover usuario -->
+            <div class="modal fade" id="remove-user-{{$user->id}}-{{$team->id_teams}}" tabindex="-1" aria-labelledby="remove-user-{{$user->id}}-{{$team->id_teams}}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="remove-user-{{$user->id}}-{{$team->id_teams}}">Remover usuário</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Tem certeza de que deseja remover esse usuário da turma?
+                        </div>
+                        <div class="modal-footer" style="flex-wrap: nowrap">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width: 100%">
+                                Cancelar
+                            </button>
+                            <!-- Botão para abrir o modal -->
+                            <form id="form-remove-user-{{$user->id}}" action="{{ route('team.remove_user', ['id' => $user->id]) }}" method="post" class="d-none">
+                                <input type="text" name="id_user" id="id_user" value="{{$user->id}}">
+                                <input type="text" name="id_team" id="id_team" value="{{$team->id_teams}}">
+                                @csrf
+                            </form>
+                            
+                            <a class="btn btn-danger" style="width: 100%" onclick="event.preventDefault(); console.log(document.getElementById('form-remove-user-{{$user->id}}')); document.getElementById('form-remove-user-{{$user->id}}').submit();">
+                                Remover
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endcan
         </div>
     @endforeach
     <script src="{{asset('js/code.jquery.com_jquery-3.6.0.min.js')}}"></script>
