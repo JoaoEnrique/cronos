@@ -49,7 +49,7 @@
                     
                         @php
                             $admin_controller = app(App\Http\Controllers\AdminController::class);
-                            $isAdmin = $admin_controller->isAdmin(auth()->user()->id);
+                            $isAdmin = auth()->check() && $admin_controller->isAdmin(auth()->user()->id);
                         @endphp
 
 
