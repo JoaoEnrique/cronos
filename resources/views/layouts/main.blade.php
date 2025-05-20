@@ -1,3 +1,12 @@
+<!--
+    "PRA QUE SERVE
+    TANTO CÓDIGO
+    SE A VIDA
+    NÃO É PROGRAMADA
+    E AS MELHORES COISAS
+    NÃO TEM LÓGICA".
+    Algúem (algum ano)
+-->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
