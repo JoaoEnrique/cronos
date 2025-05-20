@@ -15,8 +15,9 @@
   @yield('content')
 
   <script>
-      console.log('%cDesenvolvido pelo João Enrique', 'font-size: 20px; color: red;');
-      console.log('%cwww.github.com/joaoenrique', 'font-size: 20px; color: red;');
+    console.log('%cDesenvolvido pelo João Enrique', 'font-size: 30px; color: red;');
+    console.log(`%chttps://github.com/JoaoEnrique`, 'font-size: 20px; color: #5bb4ff;');
+    console.log(`%Cronos ${new Date().getFullYear()}`, 'font-size: 30px; color: #5bb4ff;');
   </script>
 
 </html>
