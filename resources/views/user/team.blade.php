@@ -115,7 +115,7 @@
 
 
             {{-- POSTAR MENSAGEM CASO SEJA ADMIN OU A TURMA ESTEJA ABERTA --}}
-            @if($team->closed && $isAdmin || !$team->closed)
+            @can("post-team", $team)
             {{-- o  enctype="multipart/form-data" serve para salvar arquivos --}}
                 <form method="post" action="{{route('team.message')}}" class="form-public-team" enctype="multipart/form-data">
                     @csrf
@@ -204,9 +204,9 @@
                 </form>
             @else
                 <div class="div-public-team" style="margin-top: 20px; padding: 20px">
-                    <p>Somente administradoes podem publicar nesta turma</p>
+                    <p>Somente administradoes e participantes podem publicar nesta turma</p>
                 </div>
-            @endif
+            @endcan
 
                 @foreach($messages as $message)
                  @php 

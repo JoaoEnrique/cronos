@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageTeamController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NavigationController;
 use App\Http\Controllers\UserController;
@@ -65,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
         
         
         Route::group(['prefix' => 'messages'], function () {
-            Route::post('/store', [UserController::class, 'messageTeam'])->name('team.message');//envia mensagem na turma
+            Route::post('/store', [MessageTeamController::class, 'store'])->name('team.message');//envia mensagem na turma
             Route::post('/delete/{id_message_team}', [UserController::class, 'deleteMessage'])->name('message.delete');//APAGAR MENSAGEM
             Route::post('/update', [UserController::class, 'updateMessage'])->name('message.update');//edita mensagem da turma
         });

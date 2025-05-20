@@ -5,6 +5,7 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -26,8 +27,20 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-         Gate::define('remover-user', function ($user, $team, $userToRemove) {
+        Gate::define('remover-user', function ($user, $team, $userToRemove) {
             return ($user->id <= 5 || $user->id == $team->id_user) && $user->id >= $userToRemove->id;
+        });
+        Gate::define('post-team', function ($user, $team) {
+            $isMember = DB::table('users_teams')
+            ->where('id_team', $team->id_teams)
+            ->where('id_user', $user->id)
+            ->exists();
+
+
+            return (
+                ($team->closed && $user->id == $team->id_user && $isMember)
+                || (!$team->closed && $isMember)
+            );
         });
     }
 }
