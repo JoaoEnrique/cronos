@@ -30,8 +30,8 @@
         
         <div class="row-card-teams row-card-team-choose">
             <div class="card card-teams" style="background: {{  $team->color  }}; border-radius: 0;">
-                <div class="card-body">
-                    <div class="row">
+                <div class="card-body card-body-team">
+                    <div class="row" style="position: relative;">
                         <div class="col">
                             <h5 class="card-title">{{  $team->name  }}</h5>
                             <p class="card-text">{{  $team->description  }}</p>
@@ -49,7 +49,7 @@
                         </p>
                         </div>
                         
-                        <div class="col-2" style="position: absolute; top: 0; right: 0;z-index: 999!important;">
+                        <div class="" style="position: absolute; top: 0; right: 0;z-index: 999!important;">
                             <div class="config-card-teams">
                                 <ul class="navbar-nav">
                                     <li class="nav-item dropdown" style="flex-wrap: wrap;">
