@@ -117,7 +117,7 @@ class TeamController extends Controller
             'id_user' => auth()->user()->id,
             'name' => $request->name,
             'description' => $request->description,
-            'closed' => $request->closed,
+            'closed' => !!$request->closed,
             'color' => $request->color,
         ]);
 
