@@ -84,16 +84,16 @@ class TeamController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'team_code' => $team_code,
-            'closed' => $request->closed,
+            'closed' => !!$request->closed,
             'color' => $request->color,
         ]);
 
-        $user_team = UserTeam::create([
+        UserTeam::create([
             'id_user' => auth()->user()->id,
             'id_team' => $team->id_teams,
         ]);
 
-        return redirect()->route('teams')->with('success', 'Turma criada');
+        return redirect("/teams/$team->team_code")->with('success', 'Turma criada');
     }
 
     function edit($id_team){

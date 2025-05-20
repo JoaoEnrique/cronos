@@ -39,14 +39,6 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');//sair da conta
 
-    // 
-    // Route::get('/team/{team_code}', [UserController::class, 'team'])->name('team');//turma especifica
-    // Route::get('/teams', [UserController::class, 'teams'])->name('teams');//todas as turmas
-    // Route::post('/team/send-message', [UserController::class, 'messageTeam'])->name('team.message');//envia mensagem na turma
-    // Route::post('/team/update-message', [UserController::class, 'updateMessage'])->name('message.update');//edita mensagem da turma
-    // Route::post('/team/enter', [UserController::class, 'enterTeam'])->name('team.enter');//entrar na turma
-    // Route::post('/delete-message/{id_message_team}', [UserController::class, 'deleteMessage'])->name('message.delete');//APAGAR MENSAGEM
-
      // TURMA
     Route::group(['prefix' => 'teams'], function () {
         Route::get('/', [TeamController::class, 'index'])->name('teams');//todas as turmas
