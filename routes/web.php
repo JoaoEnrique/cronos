@@ -30,7 +30,7 @@ Route::group(['middleware' => 'guest'], function () {
 
     // Criar conta
     Route::get('/register', [NavigationController::class, 'register'])->name('register');
-    Route::post('/register', [UserController::class, 'createAccount']);
+    Route::post('/register', [UserController::class, 'register']);
 });
 
 
@@ -63,4 +63,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-Route::get('/@{username}', [UserController::class, 'viewAccount'])->name('account');//visualizar da conta
+Route::get('/@{username}', [UserController::class, 'account'])->name('account');//visualizar da conta

@@ -19,11 +19,6 @@ class NavigationController extends Controller
         return view('user.login');
     }
 
-    // SOBRE
-    public function about(){
-        return view('about');
-    }
-
     // Cadastrar
     public function register(){
         return view('user.register');
@@ -37,11 +32,6 @@ class NavigationController extends Controller
     // ERRO 404
     public function page_not_found(){
         return view('errors.404');
-    }
-
-    // CRIAR ADMIN
-    public function create_admin(){
-        return view('admin.create_admin');
     }
 
      // CRIAR TURMA
