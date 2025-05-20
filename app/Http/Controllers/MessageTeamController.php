@@ -136,4 +136,54 @@ class MessageTeamController extends Controller
             return redirect()->back()->with('danger', 'Não foi possivel enviar mensagem. Tente novamente mais tarde');
         }
     }
+
+    public function delete($id_message_team){
+        try{
+            $message = MessageTeam::find($id_message_team);
+            if(!$message) return back()->with('danger', 'Mensagem não encontrada');
+            if(Gate::denies('delete-team-message', $message)) return back()->with('danger', 'Você não tem permissão para apagar esta mensagem');
+
+            $files = FileMessage::where('id_message_team', $id_message_team)->get()->all();
+
+            foreach($files as $file){
+                $file->delete();
+
+                //pega caminho do arquivo
+                $path_file = public_path($file->path_file); //pega caminho da imagem localhost (public/img/img_account)
+                //$img_user_Path = public_path('../img/img_account/' . $id . '.png'); //pega caminho da imagem hospedagem (img/img_account)
+
+                //verifica se tem imagem
+                if (file_exists($path_file)) {
+                    unlink($path_file); // Remove o arquivo
+                }
+
+            }
+
+            $message = MessageTeam::where('id_message_team', $id_message_team)->get()->first()->delete();
+
+            return redirect()->back()->with('success', 'Mensagem apagada');
+        }catch(\Exception $e){
+            return redirect()->back()->with('danger', 'Não foi possivel apagar mensagem. Tente novamente mais tarde');
+        }
+    }
+
+    public function update(Request $request){
+        try{
+            $request->validate([
+                'message' => ['required'],
+            ]);
+
+            $message = MessageTeam::where('id_message_team', $request->id_message_team)->get()->first();
+            if(!$message) return back()->with('danger', 'Mensagem não encontrada');
+            if(Gate::denies('edit-team-message', $message)) return back()->with('danger', 'Você não tem permissão para atualizar esta mensagem');
+
+            $message ->update([
+                'text' => $request->message,
+            ]);
+
+            return redirect()->back()->with('success', 'Mensagem atualizada');
+        }catch(\Exception $e){
+            return redirect()->back()->with('danger', 'Não foi possivel atualizar mensagem. Tente novamente mais tarde');
+        }
+    }
 }

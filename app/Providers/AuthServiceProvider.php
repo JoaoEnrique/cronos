@@ -28,20 +28,20 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('remover-user', function ($user, $team, $userToRemove) {
-            return ($user->id <= 5 || $user->id == $team->id_user || $user->id == $userToRemove->id) && $user->id <= $userToRemove->id;
+            return ($user->isAdmin() || $user->id == $team->id_user || $user->id == $userToRemove->id) && $user->id <= $userToRemove->id;
         });
         Gate::define('delete-team', function ($user, $team) {
-            return ($user->id <= 5 || $user->id == $team->id_user) && $user->id <= $team->id_user;
+            return ($user->isAdmin() || $user->id == $team->id_user) && $user->id <= $team->id_user;
         });
         Gate::define('update-team', function ($user, $team) {
-            return ($user->id <= 5 || $user->id == $team->id_user) && $user->id <= $team->id_user;
+            return ($user->isAdmin() || $user->id == $team->id_user) && $user->id <= $team->id_user;
         });
         Gate::define('view-messages', function ($user, $team) {
             $isMember = DB::table('users_teams')
             ->where('id_team', $team->id_teams)
             ->where('id_user', $user->id)
             ->exists();
-            return $isMember;
+            return $isMember || $user->isAdmin();
         });
         Gate::define('post-team', function ($user, $team) {
             $isMember = DB::table('users_teams')
@@ -52,7 +52,15 @@ class AuthServiceProvider extends ServiceProvider
             return (
                 ($team->closed && $user->id == $team->id_user && $isMember)
                 || (!$team->closed && $isMember)
+                || $user->isAdmin()
             );
+        });
+
+        Gate::define('edit-team-message', function ($user, $message) {
+            return $message->id_user == $user->id || $user->isAdmin();
+        });
+        Gate::define('delete-team-message', function ($user, $message) {
+            return $message->id_user == $user->id || $user->isAdmin();
         });
     }
 }

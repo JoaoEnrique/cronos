@@ -352,7 +352,7 @@
                         </div>
 
                         {{-- EDITAR MENSAGEM SE FOR DO USUARIO LOGADO OU FOR ADMIN --}}
-                        @if($isAdmin || auth()->user()->id == $message->id_user)
+                        @can('edit-team-message', $message)
                             <div class="col-2" style="position: absolute; top: 0; right: 0;">
                                 <div class="config-card-teams">
                                     <ul class="navbar-nav">
@@ -372,18 +372,20 @@
                                                     </a>
                                                 </li>
                                                 {{-- PAGAR tURMA--}}
-                                                <li>
-                                                    <!-- Botão para abrir o modal -->
-                                                    <a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#confirm-delete-message-{{$message->id_message_team}}">
-                                                        Apagar
-                                                    </a>
-                                                </li>
+                                                @can('delete-team-message', $message)
+                                                    <li>
+                                                        <!-- Botão para abrir o modal -->
+                                                        <a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#confirm-delete-message-{{$message->id_message_team}}">
+                                                            Apagar
+                                                        </a>
+                                                    </li>
+                                                @endcan
                                             </ul>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                        @endif
+                        @endcan
                 </div>
             @endforeach
             

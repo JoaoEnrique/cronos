@@ -51,8 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
         
         Route::group(['prefix' => 'messages'], function () {
             Route::post('/store', [MessageTeamController::class, 'store'])->name('team.message');//envia mensagem na turma
-            Route::post('/delete/{id_message_team}', [UserController::class, 'deleteMessage'])->name('message.delete');//APAGAR MENSAGEM
-            Route::post('/update', [UserController::class, 'updateMessage'])->name('message.update');//edita mensagem da turma
+            Route::post('/delete/{id_message_team}', [MessageTeamController::class, 'delete'])->name('message.delete');//APAGAR MENSAGEM
+            Route::post('/update', [MessageTeamController::class, 'update'])->name('message.update');//edita mensagem da turma
         });
 
         Route::get('/{team_code}', [TeamController::class, 'view'])->name('team');//turma especifica
