@@ -279,7 +279,7 @@ class UserController extends Controller
             ]);
 
             return redirect()->back()->with('success', 'Mensagem atualizada');
-        }catch(Exception $e){
+        }catch(\Exception $e){
             return redirect()->back()->with('danger', 'Não foi possivel atualizar mensagem. Tente novamente mais tarde');
         }
     }

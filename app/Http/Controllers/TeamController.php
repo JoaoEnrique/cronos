@@ -9,6 +9,7 @@ use App\Models\MessageTeam;
 use App\Models\FileMessage;
 use App\Models\Hospedagem;
 use Illuminate\Support\Facades\DB;
+use Gate;
 
 class TeamController extends Controller
 {
@@ -97,11 +98,10 @@ class TeamController extends Controller
     function edit($id_team){
         $team = Team::where('id_teams', $id_team)->get()->first();
 
-        if($team){
-            return view('admin.edit_teams', ['team' => $team]);
-        }
+        if(!$team) return view('errors.404');
+        if(Gate::denies('update-team', [$team])) return redirect("/teams/$team->team_code")->with('danger', 'Você não tem permissão para atualizar essa turma');
 
-        return view('errors.404');
+        return view('admin.edit_teams', ['team' => $team]);
     }
 
     public function update(Request $request){
@@ -112,6 +112,8 @@ class TeamController extends Controller
         ]);
 
         $team = Team::where('id_teams', $request->id_team)->get()->first();
+        if(!$team) return back()->with('danger', 'Turma não encontrada');
+        if(Gate::denies('update-team', [$team])) return back()->with('danger', 'Você não tem permissão para atualizar essa turma');
 
         $team->update([
             'id_user' => auth()->user()->id,
@@ -128,6 +130,9 @@ class TeamController extends Controller
         $team = Team::where('id_teams', $id_team)->get()->first();
         $messages = MessageTeam::where('id_team', $id_team)->get()->all();
         $users_team = UserTeam::where('id_team', $id_team)->get()->all();
+
+        if(!$team) return back()->with('danger', 'Turma não encontrada');
+        if(Gate::denies('delete-team', [$team])) return redirect("/teams/$team->team_code")->with('danger', 'Você não tem permissão para apagar essa turma');
         
         foreach($users_team as $user_team){
             $user_team->delete();

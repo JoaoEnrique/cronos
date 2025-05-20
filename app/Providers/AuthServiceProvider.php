@@ -28,7 +28,13 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('remover-user', function ($user, $team, $userToRemove) {
-            return ($user->id <= 5 || $user->id == $team->id_user) && $user->id >= $userToRemove->id;
+            return ($user->id <= 5 || $user->id == $team->id_user) && $user->id <= $userToRemove->id;
+        });
+        Gate::define('delete-team', function ($user, $team) {
+            return ($user->id <= 5 || $user->id == $team->id_user) && $user->id <= $team->id_user;
+        });
+        Gate::define('update-team', function ($user, $team) {
+            return ($user->id <= 5 || $user->id == $team->id_user) && $user->id <= $team->id_user;
         });
         Gate::define('post-team', function ($user, $team) {
             $isMember = DB::table('users_teams')

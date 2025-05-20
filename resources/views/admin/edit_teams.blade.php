@@ -22,6 +22,22 @@
                 </div>
                 <div class="col">
                     <form class="row g-3 form-login" method="POST" action="/teams/edit/{{ $team->id_teams }}">
+                        {{-- MENSAGEM DE SUCESSO --}}
+                        @if(session()->has('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{session()->get('success')}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        {{-- MENSAGEM DE ERRO --}}
+                        @if(session()->has('danger'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{session()->get('danger')}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
                         @csrf
                         <h1>Editar - {{  $team->name  }}</h1>
                         {{-- ID da TURMA --}}
