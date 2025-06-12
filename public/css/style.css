@@ -18,6 +18,25 @@ footer{
 }
 
 
+.img-perfil-menu{
+    border-radius: 5px!important;
+}
+
+.img-perfil-menu{
+    height: 35px!important;
+    width: 35px!important;
+    max-height: 35px!important;
+    max-width: 35px!important;
+    min-height: 35px!important;
+    min-width: 35px!important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
 *{
     font-family: open-sans;
 }
@@ -584,7 +603,7 @@ h3{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 50%;
+    border-radius: 15%;
 }
 
 div.col-img-conta {

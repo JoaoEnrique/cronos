@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-xl fixed-top">
-    <div class="container-fluid container-fluid-logo">
+<nav class="navbar navbar-pc navbar-dark user-select-none navbar-expand-md fixed-top">
+    <div class="container-fluid">
         <button class="navbar-toggler" style="border: 0!important" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <img src="{{asset('img/menu.svg')}}" height="25px" srcset="">
         </button>
@@ -73,43 +73,15 @@
 
             @endif
         </div>
-        <div class="container-fluid offcanvas-body" style="justify-content: space-between; align-items: center;">
-            {{-- MENU --}}
-            <ul class="navbar-nav">
-                <button type="button" class="link-close-menu" data-bs-dismiss="offcanvas" aria-label="Close">{{-- Fechar menu ao ir para link --}}
-                    <li class="nav-item">
-                        <a id="link-home" class="nav-link" href="{{route('index')}}">
-                            <i data-lucide="home"></i>
-                            Home
-                        </a>
-                    </li>
-                </button>
-                {{-- Se for admin,  mostra criar quiz e tabelas de listagem--}}
-                {{-- @if(auth()->check() && $isAdmin)
-                    @if ($isAdmin)
-                        <li class="nav-item dropdown" style="flex-wrap: wrap;">
-                            <a
-                                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="nav-link dropdown-toggle 
-                                @if(Route::getCurrentRoute()?->getName() == 'admin.list_students' || Route::getCurrentRoute()?->getName() == 'admin.list_admins' || Route::getCurrentRoute()?->getName() == 'admin.create')
-                                    active 
-                                @endif">
-                                    Administrar
-                            </a>
-                            <ul class="dropdown-menu dropdown-100" style="min-width: 100%">
-                                <li><a class="dropdown-item @if(Route::getCurrentRoute()?->getName() == 'admin.list_students') active @endif" href="{{route('admin.list_students')}}">Listar Alunos</a></li>
-                                <li><a class="dropdown-item @if(Route::getCurrentRoute()?->getName() == 'admin.list_admins') active @endif" href="{{route('admin.list_admins')}}">Listar Administradores</a></li>
-                                <li><a class="dropdown-item @if(Route::getCurrentRoute()?->getName() == 'admin.create') active @endif" href="{{route('admin.create')}}">Criar Administrador</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                @endif --}}
-
-                {{-- <li class="nav-item">
-                    <a class="nav-link @if(Route::getCurrentRoute()?->getName() == 'teams') active @endif" href="{{route('teams')}}">
-                        Turmas
+        <div class="d-flex div-icons-nav" role="search">
+      <ul class="navbar-nav me-auto mb-lg-0 content-menu">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-pc" aria-current="page" href="/">
+                    <i data-lucide="home"></i>
+                    {{-- Home --}}
                     </a>
-                </li> --}}
-
+                </li>
+               
                 {{-- Form para entrar na  turma se não for admin --}}
                 @if(auth()->check() && !$isAdmin)
                     <li class="nav-item none-pc" style="margin-top: 20px">
@@ -154,39 +126,31 @@
                 {{-- Se o usuário for logado --}}
                 @else
                     {{-- IMAGEM DA CONTA PC --}}
-                    <li class="none-cel nav-item dropdown" style="flex-wrap: wrap;">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%; display: flex; align-items: center;">
-                            {{-- Verifica se tem imagem --}}
-
-                            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-                            <script>
-                            $(document).ready(function() {
-                                var imageUrl = "{{ $img_account }}"; // Substitua $caminhoParaImagem pela variável Blade real
-                                var timestamp = new Date().getTime();
-                                // $(".img-account-menu").attr("src", imageUrl + "?v=" + timestamp);
-                                $(".img-account-menu").css("background-image", "url('" + imageUrl + "?v=" + timestamp + "')");
-                            });
-                            </script>
-
-
-
-                            {{-- IMAGEM DA CONTA --}}
-                            {{-- <div class="img-account-menu" style="background-image: url('{{asset($img_account)}}')"></div> --}}
-                            <div class="img-account-menu"></div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-link-pc dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img
+                            id="userImage"
+                            class="cursor-pointer img-perfil-menu"
+                            src="{{ config("app.pacoca_back_url") }}/{{auth()->user()->img_account}}"
+                            alt="Perfil"
+                            style="cursor: pointer!important"
+                            onerror="this.src='/img/img-account.png';"
+                            />
                         </a>
-                        <ul class="dropdown-menu dropdown-100" style="">
-                            <li><a class="dropdown-item" href="/{{"@" . auth()->user()->user_name}}">Conta</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            {{-- Sai da conta --}}
-                            <li>
-                                <form id="logout" action="{{ route('logout') }}" method="post" class="d-none">
-                                    @csrf
-                                </form>
-                                
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); console.log(document.getElementById('logout')); document.getElementById('logout').submit();">
-                                    {{ __('Sair') }}
-                                </a>
-                            </li>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="/{{"@" . auth()->user()->user_name}}">
+                            <i style="height: 19px; margin-right: 3px" data-lucide="user"></i>
+                            Conta
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="/logout">
+                            <i style="height: 19px; margin-right: 3px" data-lucide="log-out"></i>
+                            Sair
+                            </a>
+                        </li>
                         </ul>
                     </li>
                 @endif
