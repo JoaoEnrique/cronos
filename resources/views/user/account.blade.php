@@ -85,7 +85,7 @@
         @if(auth()->check() && $user->id == auth()->user()->id)
             <div class="row" style="justify-content: center; margin-top: 50px">
                 <div class="col-10">
-                    <p>Atualize as informações da sua conta pelo <a href="{{config("app.pacoca_url")}}/conta" target="_blank" rel="noopener noreferrer">Central de Contas</a> Alterações são refletidas no Paçoca, ReadBooks, Cronos e Rita!    </p>
+                    <p>Atualize as informações da sua conta pelo <a href="{{config("app.pacoca_url")}}/conta" target="_blank" rel="noopener noreferrer">Central de Contas</a> Alterações são refletidas no Paçoca, Read Books, Cronos e Rita!    </p>
                 </div>
             @endif
         </div>
