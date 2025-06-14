@@ -15,9 +15,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('css/style.css?v=18') }}">
-    <link rel="stylesheet" href="{{ asset('css/vars.css?v=18') }}">
-    <link rel="stylesheet" href="{{ asset('css/navbar-pc.css?v=18') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css?v=19') }}">
+    <link rel="stylesheet" href="{{ asset('css/vars.css?v=19') }}">
+    <link rel="stylesheet" href="{{ asset('css/navbar-pc.css?v=19') }}">
      <script src="{{asset('lucide@0.511.0/dist/umd/lucide.min.js')}}"></script>
      <script src="https://unpkg.com/lucide@latest"></script>
      <link href="{{asset('bootstrap-5.0.0/cdn.jsdelivr.net_npm_bootstrap@5.0.2_dist_css_bootstrap.min.css')}}" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -54,14 +54,15 @@
       
       
       // Adiciona ou remove a classe 'dark' no root
-      if (isDarkMode) {
-          document.documentElement.classList.add('dark'); // Adiciona a classe 'dark'
-          document.documentElement.classList.remove('light'); // Adiciona a classe 'dark'
-        } else {
-            document.documentElement.classList.add('light'); // Remove a classe 'dark'
-            document.documentElement.classList.remove('dark'); // Remove a classe 'dark'
-        }
-        lucide.createIcons();
+    if (isDarkMode) {
+        document.documentElement.classList.add('dark'); // Adiciona a classe 'dark'
+        document.documentElement.classList.remove('light'); // Adiciona a classe 'dark'
+    } else {
+        document.documentElement.classList.add('light'); // Remove a classe 'dark'
+        document.documentElement.classList.remove('dark'); // Remove a classe 'dark'
+    }
+
+    lucide.createIcons();
 
     console.log('%cDesenvolvido pelo João Enrique', 'font-size: 30px; color: red;');
     console.log(`%chttps://github.com/JoaoEnrique`, 'font-size: 20px; color: #5bb4ff;');

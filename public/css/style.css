@@ -479,7 +479,7 @@ input.form-control, textarea.form-control{
 }
 
 .form-login{
-    background: #fff;
+    /* background: #fff; */
     width: 500px;
     border-radius: 3px;
 }
