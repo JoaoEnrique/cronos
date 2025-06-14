@@ -60,6 +60,18 @@
           </ul>
         </li>
 
+        <span style="cursor: pointer;" onClick="toggleDarkMode()" id="darkModeToggle"
+            className="cursor-pointer link-menu-right dropdown-item d-flex align-items-center justify-content-start">
+            <div class="nav-link nav-link-pc mode-dark">
+            <i style="color: #fff" data-lucide="sun"></i>
+            {{-- <span>Dark</span> --}}
+            </div>
+            <div class="nav-link nav-link-pc mode-light">
+            <i style="color: #fff" data-lucide="moon"></i>
+            {{-- <span>Light</span> --}}
+            </div>
+          </span>
+
 
         @if(auth()->check())
           <li class="nav-item dropdown">
@@ -227,7 +239,8 @@
           </li>
           </ul>
         </li>
-        <li>
+
+        <li class="nav-item dropdown">
           <a class="nav-link" href="#" style="color: #fff">
           <span style="cursor: pointer; margin-top: 0px;" onClick="toggleDarkMode()" id="darkModeToggle"
             className="cursor-pointer link-menu-right dropdown-item d-flex align-items-center justify-content-start">

@@ -691,7 +691,7 @@ div.col-img-conta {
     resize: none;
 }
 
-.count-student{
+.count-student, .card-text{
     color: #fff;
     margin-bottom: -7px;
 }
