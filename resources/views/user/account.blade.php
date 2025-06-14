@@ -35,11 +35,6 @@
                 <div class="col-md-8 col-sm-8 col-name-usser">
                     <h2>{{$user->name}}</h2>
                     <p>{{"@$user->user_name"}}</p>
-                    {{-- <p class="seguidores">3 
-                        publicações &nbsp;&nbsp; - &nbsp;&nbsp;  
-                        <span id="numero-seguidor">1</span> seguidores &nbsp;&nbsp; - &nbsp;&nbsp; 
-                        1 seguindo
-                    </p>  --}}
 
                     @if(auth()->check() && $user->id == auth()->user()->id)
                         <a target="_blank" href="{{config("app.pacoca_url")}}/conta" class="btn btn-yellow" style="width: 100%;">
@@ -86,6 +81,13 @@
             <div class="row">
                 <div class="hr"></div>
             </div>
+
+        @if(auth()->check() && $user->id == auth()->user()->id)
+            <div class="row" style="justify-content: center; margin-top: 50px">
+                <div class="col-10">
+                    <p>Atualize as informações da sua conta pelo <a href="{{config("app.pacoca_url")}}/conta" target="_blank" rel="noopener noreferrer">Central de Contas</a> Alterações são refletidas no Paçoca, ReadBooks, Cronos e Rita!    </p>
+                </div>
+            @endif
         </div>
 
 
