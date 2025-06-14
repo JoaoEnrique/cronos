@@ -110,6 +110,9 @@
 .dark .card-teams *{
     color: oklch(0.300 0 0);
 }
+.dark .navbar-brand{
+    filter: invert(1);
+}
 
 .dark .container-livro p{
     color: #fff;
