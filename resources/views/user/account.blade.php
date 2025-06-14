@@ -53,13 +53,13 @@
                         @endphp
 
 
-                        <div class="d-flex">
+                        <div class="d-flex justify-content-between">
                             <a target="_blank" href="{{config("app.pacoca_url")}}/{{"@" . $user->user_name}}" class="btn btn-yellow" style="width: {{ $user->readbook_user_id ? "50%" : "100%"}};">
                                 Paçoca
                             </a>
 
                             @if($user->readbook_user_id )
-                                <a target="_blank" href="{{config("app.readbooks_url")}}/compartilhar-livro/{{$user->id}}" class="btn btn-yellow" style="width: 50%;">
+                                <a target="_blank" href="{{config("app.readbooks_url")}}/compartilhar-livro/{{$user->id}}" class="ml-3 btn btn-yellow" style="width: calc(50% - 5px);">
                                     Read Books
                                 </a>
                             @endif
