@@ -113,6 +113,9 @@
 .dark .navbar-brand{
     filter: invert(1);
 }
+.dark .navbar-brand, .dark .text-menu{
+    color: #000!important;
+}
 
 .dark .container-livro p{
     color: #fff;

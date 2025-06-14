@@ -221,7 +221,7 @@
           </a>
           <ul style="border:0" class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li>
-            <a style="color: #fff" class="dropdown-item" href="/conta">
+            <a style="color: #fff" class="dropdown-item" href="/{{"@" . auth()->user()->user_name}}">
             <i data-lucide="user"></i>
             Conta
             </a>
