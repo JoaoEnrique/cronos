@@ -28,9 +28,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('css/style.css?v=20') }}">
-    <link rel="stylesheet" href="{{ asset('css/vars.css?v=20') }}">
-    <link rel="stylesheet" href="{{ asset('css/navbar-pc.css?v=20') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css?v=21') }}">
+    <link rel="stylesheet" href="{{ asset('css/vars.css?v=21') }}">
+    <link rel="stylesheet" href="{{ asset('css/navbar-pc.css?v=21') }}">
      <script src="{{asset('lucide@0.511.0/dist/umd/lucide.min.js')}}"></script>
      <script src="https://unpkg.com/lucide@latest"></script>
      <link href="{{asset('bootstrap-5.0.0/cdn.jsdelivr.net_npm_bootstrap@5.0.2_dist_css_bootstrap.min.css')}}" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
