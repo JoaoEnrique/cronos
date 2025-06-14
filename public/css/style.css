@@ -20,6 +20,13 @@ input.form-control, textarea.form-control{
     color: var(--color-input)!important;
 }
 
+.dropdown-item{
+    display: flex!important;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+}
+
 .navbar .form-control#livro{
     background-color: var(--primary-blue) !important;
     border-color: var(--color-menu);
@@ -907,10 +914,6 @@ div.col-img-conta {
         width: 100%;
     }
 
-    .nav-link.active{
-        color: #fff!important;
-    }
-
     .form-floating>label{
         left: 5px!important;
     }
@@ -1019,6 +1022,12 @@ div.col-img-conta {
     }
     .container-account{
         margin-top: 30px;
+    }
+    .card-body-team {
+        padding-top: 10px !important;
+    }
+    .row-file-team .col-1{
+        min-width:  50px;
     }
 }
 
@@ -1201,10 +1210,6 @@ div.col-img-conta {
         height: 40px;
     }
     
-    .nav-item{
-        height: 50px;
-    }
-
     .container-about {
         max-width: 100%!important;
         min-height: 100px;

@@ -165,7 +165,6 @@
 
             @if (auth()->check()) {{-- CASO ESTEJA LOGADO--}}
 
-        <li class="nav-item dropdown">
 
         <li>
           <a class="nav-link active" href="/livros" style="color: #fff">
@@ -193,27 +192,23 @@
 
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
           aria-expanded="false">
-          {{-- <img class="logo-books-menu-cel" height="41px" src="{{asset('img/books.png')}}" alt="" srcset="">
-          --}}
           <i data-lucide="book-open"></i>
-          Livros
+          Comunidades
         </a>
 
 
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="border:0">
           <li>
-          <a class="dropdown-item" href="/criar" style="color: #fff">
-            {{-- <img class="logo-books-menu-cel" height="41px" src="{{asset('img/add.png')}}" alt="" srcset="">
-            --}}
-            <i data-lucide="circle-plus"></i>
-            Novo livro
-          </a>
           </li>
           <li>
-          <a class="dropdown-item" href="/resumo-leitura" style="color: #fff">
-            <i data-lucide="layout-dashboard"></i>
-            Resumo da Leitura
-          </a>
+            <a class="dropdown-item" href="/teams" style="color: #fff">
+              <i data-lucide="layout-dashboard"></i>
+              Minhas comunidades
+            </a>
+            <a class="dropdown-item" href="/teams/store" style="color: #fff">
+              <i data-lucide="circle-plus"></i>
+              Nova livro
+            </a>
           </li>
         </ul>
         </li>
