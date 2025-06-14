@@ -72,7 +72,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{"@" . auth()->user()->user_name}}">
+              <a class="dropdown-item d-flex align-items-center" href="/{{"@" . auth()->user()->user_name}}">
               <i style="height: 19px; margin-right: 3px" data-lucide="user"></i>
               Conta
               </a>
@@ -165,7 +165,7 @@
 
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li>
-          <a class="dropdown-item" href="{{"@" . auth()->user()->user_name}}">
+          <a class="dropdown-item"href="/{{"@" . auth()->user()->user_name}}">
             <i data-lucide="user"></i>
             Conta
           </a>

@@ -250,13 +250,13 @@
                                 @endphp
 
                                 <h6> {{-- NOME --}}
-                                    <a style="color: #000; text-decoration: none" href="{{route('account', ['username' => $message->user->user_name])}}" href="">
+                                    <a class="name-post" style="text-decoration: none" href="{{route('account', ['username' => $message->user->user_name])}}" href="">
                                         {{  $message->user->name  }}
                                     </a>
                                 </h6>
                                 {{-- NOME DE USUARIO --}}
                                 <p class="username-public-team">
-                                    <a style="color: #000; text-decoration: none" href="{{route('account', ['username' => $message->user->user_name])}}" href="">
+                                    <a class="name-post" style="text-decoration: none" href="{{route('account', ['username' => $message->user->user_name])}}" href="">
                                         {{ "@" . $message->user->user_name   }} - {{ $tempo }}
                                     </a>
                                 </p>

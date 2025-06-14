@@ -4,7 +4,9 @@
     --primary-gray: #686669;
     --primary-blue: #5bb4ff;
 }
-
+* {
+    color: var(--color-text-post);
+}
 
 footer{
     background: var(--primary-blue);
@@ -12,9 +14,19 @@ footer{
     color: #fff;
 }
 
+input.form-control, textarea.form-control{
+    background-color: var(--background-input)!important;
+    border-color: var(--input-border-color)!important;
+    color: var(--color-input)!important;
+}
+
 .navbar .form-control#livro{
     background-color: var(--primary-blue) !important;
     border-color: var(--color-menu);
+}
+
+.name-post{
+    color: var(--color-text-post);
 }
 
 .search-menu{
@@ -57,11 +69,39 @@ footer{
     border-radius: 50%;
 }
 
+.dark .mode-dark{
+    display: none;
+}
+
+.light .mode-light{
+    display: none;
+}
+
+.mode-dark span{
+    color: var(--color-menu)!important;
+}
+
+.dropdown-menu{
+    background-color: var(--background-dropdown)!important;
+}
+.dropdown-item:hover{
+    background-color: var(--dropdown-hover-background)!important;
+}
+
+.mode-light span{
+    color: var(--color-menu)!important;
+}
+
 .card-body-team .col{
     position: relative!important;
 }
 
+.card-title{
+    color: var(--color-menu)!important;
+}
+
 .card-body-team{
+    color: var(--color-menu)!important;
     padding-top: 100px!important;
 }
 

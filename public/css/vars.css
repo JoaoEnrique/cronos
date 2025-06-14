@@ -63,7 +63,7 @@
     --color-input: #fff !important;
     --background-search: oklch(0.145 0 0);
     --background-light: #fff;
-    --color-text-post: rgba(255, 255, 255);
+    --color-text-post: #ffffffdc;
     --background-item: oklch(0.145 0 0);
     --container-screen: oklch(0.145 0 0);
     --small-menu-top: oklch(0 0 0);
@@ -102,14 +102,13 @@
     --red: #dc3545;
 }
 
-.dark .livro-outro{
-    filter: invert(1.5);
-    color: #000!important;
-    background-color: #fff!important;
+.dark body, .dark html{
+    background-color: var(--background-login)!important;
 }
 
-.dark p, .dark label{
-    color: oklch(0.708 0 0);
+
+.dark .card-teams *{
+    color: oklch(0.300 0 0);
 }
 
 .dark .container-livro p{
