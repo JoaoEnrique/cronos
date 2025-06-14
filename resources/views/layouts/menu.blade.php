@@ -1,4 +1,4 @@
-  <nav class="navbar navbar-pc navbar-dark user-select-none navbar-expand-md @if(auth()->check()) menu-radius @endif">
+  <nav class="navbar navbar-pc navbar-dark user-select-none navbar-expand-md fixed-top @if(auth()->check()) menu-radius @endif">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
         <img src="{{asset('img/logo_clock.png')}}" height="50" class="log-menu">
@@ -188,7 +188,7 @@
         </a>
 
 
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: #00000029; border:0">
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="border:0">
           <li>
           <a class="dropdown-item" href="/criar" style="color: #fff">
             {{-- <img class="logo-books-menu-cel" height="41px" src="{{asset('img/add.png')}}" alt="" srcset="">
@@ -212,7 +212,7 @@
           <i data-lucide="circle-user"></i>
           {{ explode(" ", auth()->user()->name)[0] }}
           </a>
-          <ul style="background: #00000029; border:0" class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul style="border:0" class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li>
             <a style="color: #fff" class="dropdown-item" href="/conta">
             <i data-lucide="user"></i>

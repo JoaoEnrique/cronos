@@ -5,11 +5,6 @@
     --primary-blue: #5bb4ff;
 }
 
-@font-face {
-    font-family: open-sans;
-    src: url('../fonts/open_sans/OpenSans-Light.ttf');
-}
-
 
 footer{
     background: var(--primary-blue);
@@ -62,13 +57,12 @@ footer{
     border-radius: 50%;
 }
 
-
-*{
-    font-family: open-sans;
-}
-
 .card-body-team .col{
     position: relative!important;
+}
+
+.card-body-team{
+    padding-top: 100px!important;
 }
 
 .link-footer{
@@ -403,6 +397,7 @@ footer{
 
 .container-account, .container-edit-account{
     max-width: 1000px!important;
+    margin-top: 100px;
     /* max-width: 100%!important; */
 }
 
@@ -601,7 +596,7 @@ div.col-img-conta {
 }
 
 .row-card-teams{
-    margin-top: 50px!important;
+    margin-top: 100px!important;
 }
 
 .card-teams{
@@ -745,7 +740,7 @@ div.col-img-conta {
 }
 
 .row-card-team-choose{
-    margin-top: 85px!important;
+    margin-top: 0px!important;
     cursor: default !important;;
 }
 
@@ -874,7 +869,6 @@ div.col-img-conta {
 
     .nav-link.active{
         color: #fff!important;
-        border-bottom: 3px solid #fff;
     }
 
     .form-floating>label{
@@ -1016,6 +1010,12 @@ div.col-img-conta {
     .div-img-preview-message-team-vertical{
         max-width: 60%!important;
         max-height: 500px;
+    }
+}
+
+@media (max-width: 615px) {
+    .nav-link .lucide {
+        margin-right: 20px;
     }
 }
 

@@ -10,6 +10,21 @@
 
 {{-- @extends('layouts.main') --}}
 @section('title', 'Cronos')
+<title>@yield('title')</title>
+<meta name="description" content="@yield('meta_description', 'Cronos é um sistema de turmas e grupos privados!')">
+<meta name="keywords" content="@yield('meta_keywords', 'Cronos, rede social, fazer amigos, conexões online, comunidade digital, rede social brasileira, criar perfil online, compartilhar momentos, paçoca')">
+<meta name="author" content="Cronos Inc.">
+
+<meta property="og:title" content="@yield('title', 'Cronos - Entre em grupos e comunidades do seu interesse')">
+<meta property="og:description" content="@yield('meta_description', 'Cronos é um sistema de turmas e grupos privados!')">
+<meta property="og:image" content="@yield('meta_image', asset('img/estante_icon_fundo.png'))">
+<meta property="og:url" content="@yield('meta_url', url()->current())">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="@yield('meta_title', 'Cronos - Entre em grupos e comunidades do seu interesse')">
+<meta name="twitter:description" content="@yield('meta_description', 'Cronos é um sistema de turmas e grupos privados!')">
+<meta name="twitter:image" content="@yield('meta_image', asset('img/estante_icon_fundo.png'))">
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -47,9 +62,9 @@
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
             <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
                 <div class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
-                    <h1 className="mb-2 text-2xl font-semibold">RITA</h1>
+                    <h1 className="mb-2 text-2xl font-semibold">Cronos</h1>
                     <p className="mb-4 text-[#706f6c] dark:text-[#A1A09A]">
-                        Notificações automáticas de tarefas e compromissos pelo WhatsApp
+                        Crie turmas e participe de comunidades do seu interesse
                     </p>
                     <ul class="flex flex-col mb-4 lg:mb-6">
                         <li class="flex items-center gap-4 py-2 relative before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A] before:top-1/2 before:bottom-0 before:left-[0.4rem] before:absolute">
@@ -59,8 +74,8 @@
                                 </span>
                             </span>
                             <span>
-                                Crie sua Tarefa
-                                <a href="{{ config("app.rita_front_url") }}/agendamentos" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#5bb4ff] dark:text-[#5bb4ff] ml-1">
+                                Crie sua turma
+                                <a href="/teams/store" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#5bb4ff] dark:text-[#5bb4ff] ml-1">
                                     <span>aqui</span>
                                     <svg
                                         width="10"
@@ -86,14 +101,14 @@
                                 </span>
                             </span>
                             <span>
-                                Receba notificação por WhatsApp
+                                Compartilhe o código para seus amigos
                             </span>
                         </li>
                     </ul>
                     <ul class="flex gap-3 text-sm leading-normal">
                         <li>
-                            <a href="{{ config("app.rita_front_url") }}/agendamentos" class="inline-block dark:bg-[#eeeeec] dark:border-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white dark:hover:border-white hover:bg-black hover:border-black px-5 py-1.5 bg-[#1b1b18] rounded-sm border border-black text-white text-sm leading-normal">
-                                Cadastrar Agendamentro
+                            <a href="/teams/store" class="inline-block dark:bg-[#eeeeec] dark:border-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white dark:hover:border-white hover:bg-black hover:border-black px-5 py-1.5 bg-[#1b1b18] rounded-sm border border-black text-white text-sm leading-normal">
+                                Criar turma
                             </a>
                         </li>
                     </ul>

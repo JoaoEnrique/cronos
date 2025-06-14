@@ -98,7 +98,7 @@
                                     </div>
                                     
                                         @can("delete-team", $team)
-                                        <div class="col-2" style="position: absolute; top: 0; right: 0;z-index: 999!important;">
+                                        <div class="col-2" style="position: absolute; top: 0; right: 0;z-index: 1!important;">
                                             <div class="config-card-teams">
                                                 <ul class="navbar-nav">
                                                     <li class="nav-item dropdown" style="flex-wrap: wrap;">

@@ -24,6 +24,21 @@
     <script src="{{asset('bootstrap-5.0.0/cdn.jsdelivr.net_npm_@popperjs_core@2.9.2_dist_umd_popper.min.js')}}" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="{{asset('bootstrap-5.0.0/cdn.jsdelivr.net_npm_bootstrap@5.0.2_dist_js_bootstrap.min.js')}}" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
+    <meta name="description" content="@yield('meta_description', 'Cronos é um sistema de turmas e grupos privados!')">
+    <meta name="keywords" content="@yield('meta_keywords', 'Cronos, rede social, fazer amigos, conexões online, comunidade digital, rede social brasileira, criar perfil online, compartilhar momentos, paçoca')">
+    <meta name="author" content="Cronos Inc.">
+
+    <meta property="og:title" content="@yield('title', 'Cronos - Entre em grupos e comunidades do seu interesse')">
+    <meta property="og:description" content="@yield('meta_description', 'Cronos é um sistema de turmas e grupos privados!')">
+    <meta property="og:image" content="@yield('meta_image', asset('img/estante_icon_fundo.png'))">
+    <meta property="og:url" content="@yield('meta_url', url()->current())">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('meta_title', 'Cronos - Entre em grupos e comunidades do seu interesse')">
+    <meta name="twitter:description" content="@yield('meta_description', 'Cronos é um sistema de turmas e grupos privados!')">
+    <meta name="twitter:image" content="@yield('meta_image', asset('img/estante_icon_fundo.png'))">
+
     {{-- <link href="{{asset('bootstrap-5.3.0-dist/css/bootstrap.min.css')}}" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="{{asset('bootstrap-5.3.0-dist/js/bootstrap.bundle.min.js')}}" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>    
     <link href="{{ asset('bootstrap-5.3.0-dist\css\bootstrap.min.css') }}" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> --}}

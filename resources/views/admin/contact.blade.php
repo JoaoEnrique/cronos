@@ -32,7 +32,7 @@
             @foreach($contacts as $contact)
                     <div class="div-public-team" style="margin-top: 20px; padding: 20px; position:relative;">
                         {{-- Configuração --}}
-                        <div class="col-2" style="position: absolute; top: 0; right: 0;z-index: 999!important;">
+                        <div class="col-2" style="position: absolute; top: 0; right: 0;z-index: 1!important;">
                             <div class="config-card-teams">
                                 <ul class="navbar-nav">
                                     <li class="nav-item dropdown" style="flex-wrap: wrap;">
