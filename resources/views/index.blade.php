@@ -8,91 +8,112 @@
     Alguém (algum ano)
 --}}
 
-@extends('layouts.main')
+{{-- @extends('layouts.main') --}}
 @section('title', 'Cronos')
 
+<script src="https://cdn.tailwindcss.com"></script>
+
 @section('content')
-<body class="body-main" id="home">
-    @include('layouts.menu')
+<body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
+        <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
+            @if (Route::has('login'))
+                <nav class="flex items-center justify-end gap-4">
+                    @auth
+                        <a
+                            href="{{ url('/dashboard') }}"
+                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                        >
+                            Dashboard
+                        </a>
+                    @else
+                        <a
+                            href="{{ route('login') }}"
+                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
+                        >
+                            Login
+                        </a>
 
-    <section id="about" class="py-5" style="min-height: 100vh; display: flex; align-items: center; background: var(--primary-blue);">
-        <div class="container text-center">
-            <div class="mb-5">
-                <h1 class="display-3 fw-bold" style="margin-top: 50px; color: #fff">CRONOS</h1>
-            </div>
-
-            <div class="bg-white p-5 rounded shadow-lg" style="max-width: 700px; margin: 0 auto;">
-                <h2 class="mb-4 text-primary">Crie sua turma</h2>
-                <p class="mb-4">Grupos particulares com convite por código. Simples, rápido e seguro.</p>
-
-                <form method="POST" action="{{ route('team.store') }}">
-                    @csrf
-
-                    {{-- Nome --}}
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Nome da Turma">
-                        <label for="name">Nome</label>
-                        @error('name')
-                            <div class="invalid-feedback text-start">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    {{-- Descrição --}}
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" value="{{ old('description') }}" placeholder="Descrição da Turma">
-                        <label for="description">Descrição</label>
-                        @error('description')
-                            <div class="invalid-feedback text-start">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    {{-- Turma fechada --}}
-                    <div class="form-check mb-3 text-start">
-                        <input class="form-check-input" type="checkbox" id="closed" name="closed">
-                        <label class="form-check-label" for="closed">
-                            Turma fechada
-                        </label>
-                        <div class="form-text">Apenas administradores podem publicar.</div>
-                    </div>
-
-                    {{-- Cores --}}
-                    <div class="mb-4 text-start">
-                        <label class="form-label d-block mb-2">Cor da turma:</label>
-                        <div class="d-flex flex-wrap gap-3">
-                            @php
-                                $colors = [
-                                    ['id' => '1', 'hex' => '#5bb4ff'],
-                                    ['id' => '2', 'hex' => '#009788'],
-                                    ['id' => '3', 'hex' => 'rgb(25, 103, 210)'],
-                                    ['id' => '4', 'hex' => 'rgb(95, 99, 104)'],
-                                    ['id' => '5', 'hex' => 'rgb(232, 113, 10)'],
-                                ];
-                            @endphp
-                            @foreach ($colors as $color)
-                                <div>
-                                    <input class="form-check-input d-none" type="radio" name="color" id="color{{ $color['id'] }}" value="{{ $color['hex'] }}" {{ $loop->first ? 'checked' : '' }}>
-                                    <label class="label-color rounded-circle d-inline-block" for="color{{ $color['id'] }}" style="background: {{ $color['hex'] }}; width: 32px; height: 32px; cursor: pointer; border: 2px solid #ccc;"></label>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg">Criar Turma</button>
-                    </div>
-                </form>
-            </div>
+                        @if (Route::has('register'))
+                            <a
+                                href="{{ route('register') }}"
+                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                                Registrar
+                            </a>
+                        @endif
+                    @endauth
+                </nav>
+            @endif
+        </header>
+        <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
+            <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
+                <div class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
+                    <h1 className="mb-2 text-2xl font-semibold">RITA</h1>
+                    <p className="mb-4 text-[#706f6c] dark:text-[#A1A09A]">
+                        Notificações automáticas de tarefas e compromissos pelo WhatsApp
+                    </p>
+                    <ul class="flex flex-col mb-4 lg:mb-6">
+                        <li class="flex items-center gap-4 py-2 relative before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A] before:top-1/2 before:bottom-0 before:left-[0.4rem] before:absolute">
+                            <span class="relative py-1 bg-white dark:bg-[#161615]">
+                                <span class="flex items-center justify-center rounded-full bg-[#FDFDFC] dark:bg-[#161615] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] w-3.5 h-3.5 border dark:border-[#3E3E3A] border-[#e3e3e0]">
+                                    <span class="rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A] w-1.5 h-1.5"></span>
+                                </span>
+                            </span>
+                            <span>
+                                Crie sua Tarefa
+                                <a href="{{ config("app.rita_front_url") }}/agendamentos" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#5bb4ff] dark:text-[#5bb4ff] ml-1">
+                                    <span>aqui</span>
+                                    <svg
+                                        width="10"
+                                        height="11"
+                                        viewBox="0 0 10 11"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="w-2.5 h-2.5"
+                                    >
+                                        <path
+                                            d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
+                                            stroke="currentColor"
+                                            stroke-linecap="square"
+                                        />
+                                    </svg>
+                                </a>
+                            </span>
+                        </li>
+                        <li class="flex items-center gap-4 py-2 relative before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A] before:bottom-1/2 before:top-0 before:left-[0.4rem] before:absolute">
+                            <span class="relative py-1 bg-white dark:bg-[#161615]">
+                                <span class="flex items-center justify-center rounded-full bg-[#FDFDFC] dark:bg-[#161615] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] w-3.5 h-3.5 border dark:border-[#3E3E3A] border-[#e3e3e0]">
+                                    <span class="rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A] w-1.5 h-1.5"></span>
+                                </span>
+                            </span>
+                            <span>
+                                Receba notificação por WhatsApp
+                            </span>
+                        </li>
+                    </ul>
+                    <ul class="flex gap-3 text-sm leading-normal">
+                        <li>
+                            <a href="{{ config("app.rita_front_url") }}/agendamentos" class="inline-block dark:bg-[#eeeeec] dark:border-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white dark:hover:border-white hover:bg-black hover:border-black px-5 py-1.5 bg-[#1b1b18] rounded-sm border border-black text-white text-sm leading-normal">
+                                Cadastrar Agendamentro
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-[#fff2f2] dark:bg-[#1D0002] relative lg:-ml-px -mb-px lg:mb-0 rounded-t-lg lg:rounded-t-none lg:rounded-r-lg aspect-[335/376] lg:aspect-auto w-full lg:w-[438px] shrink-0 overflow-hidden">
+                    <img src="{{asset('img/logo.png')}}" alt="Logo" className="w-full h-full object-cover" />
+                    <div class="absolute inset-0 rounded-t-lg lg:rounded-t-none lg:rounded-r-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"></div>
+                </div>
+            </main>
         </div>
-    </section>
 
-    <script src="{{ asset('js/code.jquery.com_jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
-</body>
-@include('layouts.footer')
+        @if (Route::has('login'))
+            <div class="h-14.5 hidden lg:block"></div>
+        @endif
+    </body>
+{{-- @include('layouts.footer') --}}
 
 <style>
     label {
         color: #000!important;
     }
 </style>
-@endsection
+{{-- @endsection --}}

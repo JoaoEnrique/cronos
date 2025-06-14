@@ -223,7 +223,7 @@
                                     $path = str_replace('../', "", $user->img_account);
 
                                     if (file_exists($path)) {
-                                        $img_account = config("app.pacoca_back_url") . "/" .  $path;
+                                        $img_account = config("app.pacoca_api_url") . "/" .  $path;
                                     } else {
                                         $img_account = asset('img/img_account/img_account.png');
                                     }

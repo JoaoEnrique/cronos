@@ -14,7 +14,7 @@
 {{-- Conteudo do site --}}
 @section('content')
     <body class="body-login">
-        @include('layouts/menu')
+        {{-- @include('layouts/menu') --}}
         <div class="container container-login">
             <div class="row row-login">
                 <div class="col" style="flex-wrap: wrap; position: relative;">
@@ -89,11 +89,6 @@
                 </div>
             </div>
         </div>
-        
-        {{-- BOTÃO WHATSAPP --}}
-        <a target="_BLANK" class="btn-adicionar-livro"  href="https://api.whatsapp.com/send?phone=+5528999571689&text=Cronos" style="background: #40C351;">
-            <img src="../img/whatsapp_green.png" height="40px" srcset="">
-        </a>
     </body>
 
     <script src="{{asset('js/code.jquery.com_jquery-3.6.0.min.js')}}"></script>

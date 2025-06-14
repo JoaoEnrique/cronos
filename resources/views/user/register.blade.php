@@ -14,7 +14,7 @@
 {{-- Conteudo do site --}}
 @section('content')
     <body class="body-register">
-        @include('layouts/menu')
+        {{-- @include('layouts/menu') --}}
         <div class="container container-login">
             <div class="row row-login">
                 <div class="col col-img-register" style="background: #5bb4ff">

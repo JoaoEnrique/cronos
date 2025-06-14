@@ -57,7 +57,7 @@ return [
     'url' => env('APP_URL', 'http://localhost'),
     
     'pacoca_url' => env('PACOCA_URL', 'https://pacoca.net'),
-    'pacoca_back_url' => env('PACOCA_BACK_URL', 'https://laravel.pacoca.net'),
+    'pacoca_api_url' => env('PACOCA_BACK_URL', 'https://laravel.pacoca.net'),
     'readbooks_url' => env('READBOOKS_URL', 'https://readbooks.net'),
 
     'asset_url' => env('ASSET_URL'),

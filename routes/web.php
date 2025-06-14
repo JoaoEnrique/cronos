@@ -37,7 +37,7 @@ Route::group(['middleware' => 'guest'], function () {
 
 //USUARIO LOGADO
 Route::group(['middleware' => 'auth'], function () {
-    Route::post('/logout', [UserController::class, 'logout'])->name('logout');//sair da conta
+    Route::get('/logout', [UserController::class, 'logout'])->name('logout');//sair da conta
 
      // TURMA
     Route::group(['prefix' => 'teams'], function () {
