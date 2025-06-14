@@ -402,7 +402,6 @@ footer{
 }
 
 .container-account, .container-edit-account{
-    margin-top: 150px!important;
     max-width: 1000px!important;
     /* max-width: 100%!important; */
 }
@@ -906,11 +905,6 @@ div.col-img-conta {
         padding: 0 10px!important;
     }
 
-    .navbar-toggler{
-        position: absolute;
-        border: 0!important;
-        left: 15px;
-    }
     footer .container .row .col-md-6{
         width: 100%;
     }
@@ -938,11 +932,7 @@ div.col-img-conta {
     .nav-pc, .none-cel{
         display: none!important;
     }
-
-    .navbar>.container-fluid, .logo{
-        justify-content: center!important;
-        display: flex;
-    }
+    
 }
 
 @media screen and (max-width: 1190px){
@@ -1138,10 +1128,6 @@ div.col-img-conta {
 
     .col-img-cosnta{
         width: 30%!important;
-    }
-
-    .container-teams, .container-account, .container-edit-account{
-        margin-top: 100px!important;
     }
 
     .container-team{

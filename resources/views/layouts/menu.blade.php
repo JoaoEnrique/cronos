@@ -1,7 +1,7 @@
   <nav class="navbar navbar-pc navbar-dark user-select-none navbar-expand-md @if(auth()->check()) menu-radius @endif">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
-        <img src="{{asset('img/logo.png')}}" height="50" class="log-menu">
+        <img src="{{asset('img/logo_clock.png')}}" height="50" class="log-menu">
         <span class="text-menu">Cronos</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
