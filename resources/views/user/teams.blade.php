@@ -57,11 +57,11 @@
                 {{-- Form para entrar na  turma se não for admin --}}
                 @if(isset($term))
                     <div class="form-open-team">
-                        <form action="{{route('team.enter')}}" method="post">
+                        <form action="/pesquisa" method="get">
                             @csrf
                             <div class="row d-flex justify-space-between">
                                 <div class="col-10">
-                                    <input value="{{ $term ?? "" }}" class="form-control @error('team_code') is-invalid @enderror" type="text" placeholder="Código da turma" name="team_code" id="team_code">                       
+                                    <input value="{{ $term ?? "" }}" class="form-control @error('term') is-invalid @enderror" type="text" placeholder="Código da turma" name="term" id="term">                       
                                 </div>
                                 <div class="col-2">
                                     <button class="btn-primary" style="border: 0; border-radius: 5px" type="submit">
