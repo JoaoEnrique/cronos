@@ -38,6 +38,7 @@ Route::group(['middleware' => 'guest'], function () {
 //USUARIO LOGADO
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');//sair da conta
+    Route::get('/pesquisa', [TeamController::class, 'search'])->name('search');//sair da conta
 
      // TURMA
     Route::group(['prefix' => 'teams'], function () {

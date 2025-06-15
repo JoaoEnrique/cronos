@@ -55,25 +55,43 @@
 
 
                 {{-- Form para entrar na  turma se não for admin --}}
-                <div class="form-open-team">
-                    <form action="{{route('team.enter')}}" method="post">
-                        @csrf
-                        <div class="row">
-                            <div class="col-7">
-                                <input class="form-control @error('team_code') is-invalid @enderror" type="text" placeholder="Código da turma" name="team_code" id="team_code" value="{{old('team_code')}}">                       
-                                
-                                @error('team_code')
-                                    <span class="invalid-feedback" role="alert" style="text-align: left; display: block!important;">
-                                        {{$message}}
-                                    </span>
-                                @enderror
+                @if(isset($term))
+                    <div class="form-open-team">
+                        <form action="{{route('team.enter')}}" method="post">
+                            @csrf
+                            <div class="row d-flex justify-space-between">
+                                <div class="col-10">
+                                    <input value="{{ $term ?? "" }}" class="form-control @error('team_code') is-invalid @enderror" type="text" placeholder="Código da turma" name="team_code" id="team_code">                       
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn-primary" style="border: 0; border-radius: 5px" type="submit">
+                                        <img height="30px" src="{{asset('img/search.png')}}" alt="" srcset="">
+                                    </button>
+                                </div>
                             </div>
-                            <div class="col">
-                                <button class="btn btn-open-team" type="submit">Entrar na turma</button>
+                        </form>
+                    </div>
+                @else
+                    <div class="form-open-team">
+                        <form action="{{route('team.enter')}}" method="post">
+                            @csrf
+                            <div class="row">
+                                <div class="col-7">
+                                    <input class="form-control @error('team_code') is-invalid @enderror" type="text" placeholder="Código da turma" name="team_code" id="team_code" value="{{old('team_code')}}">                       
+                                    
+                                    @error('team_code')
+                                        <span class="invalid-feedback" role="alert" style="text-align: left; display: block!important;">
+                                            {{$message}}
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-open-team" type="submit">Entrar na turma</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                @endif
 
                 @foreach($teams as $team)
                     <a href="/teams/{{$team->team_code}}" style="text-decoration: none;color: #fff">

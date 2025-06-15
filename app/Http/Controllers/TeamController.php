@@ -58,6 +58,49 @@ class TeamController extends Controller
 
         return view('user.teams', compact('teams'));
     }
+    
+    public function search(Request $request){
+        $term = $request->term;
+       // 1. Buscar os registros de teams e users_teams (no banco padrão)
+        $teams = DB::table('teams')
+            ->join('users_teams', 'teams.id_teams', '=', 'users_teams.id_team')
+            ->where('users_teams.id_user', auth()->id())
+            ->select(
+                'users_teams.*',
+                'teams.*'
+            )->get();
+
+        if($term){
+            // $teams->where("description", "LIKE", "%" .  $term . "%");
+            // $teams->orWhere("name", "LIKE", "%" .  $term . "%");
+            // $teams->orWhere("team_code", "LIKE", "%" .  $term . "%");
+        }
+
+        // $team = $teams->get();
+
+        // 2. Obter os IDs dos usuários encontrados
+        $userIds = $teams->pluck('id_user')->unique()->toArray();
+
+        // 3. Buscar os usuários no banco "pacoca"
+        $users = DB::connection('pacoca')->table('users')
+            ->whereIn('id', $userIds)
+            ->get()
+            ->keyBy('id'); // indexa por ID para facilitar uso
+
+        // 4. Juntar os dados manualmente
+        $teams = $teams->map(function ($team) use ($users) {
+            $user = $users[$team->id_user] ?? null;
+
+            return (object) array_merge((array) $team, [
+                'user_name' => $user->user_name ?? null,
+                'name_name' => $user->name ?? null,
+            ]);
+        });
+
+
+
+        return view('user.teams', compact('teams', "term"));
+    }
 
     public function new(){
         return view('admin.create_team');

@@ -12,8 +12,7 @@
         <form class=" d-flex" method="GET" action="/pesquisa">
           @csrf
 
-          <input class="form-control search-menu" type="text" id="livro" name="livro"
-            placeholder="Pesquisar meus livros" aria-label="Search">
+          <input class="form-control search-menu" type="text" id="livro" value="{{ $term ?? "" }}" name="term" value="{{ $term ?? "" }}" placeholder="Pesquisar minhas turmas" aria-label="Search">
           <button class="btn btn-search-menu" type="submit">
             <img height="30px" src="{{asset('img/search.png')}}" alt="" srcset="">
           </button>
@@ -259,11 +258,11 @@
         <form class="d-flex" method="GET" action="/pesquisa">
         @csrf
 
-        <input class="form-control search-menu" type="search" id="livro" name="livro" placeholder="Nome do Livro"
+        <input class="form-control search-menu" type="search" id="search" value="{{ $term ?? "" }}" name="term" placeholder="Pesquisar minhas turmas"
           aria-label="Search">
-        <button class="btn btn-search-menu" type="submit">
-          <img height="30px" src="{{asset('img/search.png')}}" alt="" srcset="">
-        </button>
+          <button class="btn btn-search-menu" type="submit">
+            <img height="30px" src="{{asset('img/search.png')}}" alt="" srcset="">
+          </button>
         </form>
 
       @else{{-- CASO NÃO ESTEJA LOGADO--}}
